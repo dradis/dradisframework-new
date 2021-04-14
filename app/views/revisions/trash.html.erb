@@ -3,11 +3,12 @@
 <div class="content-container mt-3" id="trash">
   <% if @revisions.any? %>
     <% cache @revisions do %>
-      <div class="filter w-25">
-        <label for="filter-table" class="sr-only">Filter table by keyword</label>
-        <input type="search" id="filter-table" class="form-control js-table-filter" placeholder="Type here to filter table..."/>
-      </div>
       <div id="trash-table" class="table-wrapper">
+        <div class="filter w-25">
+          <label for="filter-table" class="sr-only">Filter table by keyword</label>
+          <input type="search" id="filter-table" class="form-control js-table-filter" placeholder="Type here to filter table..."/>
+        </div>
+
         <table class="table table-striped items-table">
           <thead>
             <tr>
