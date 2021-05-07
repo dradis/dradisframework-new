@@ -25,8 +25,8 @@ describe 'Pro export template' do
     end
 
     it 'creates the project board xml' do
-      project_board_xml = "<board version=\"3\"><id>#{@project_board.id}</id>"\
-      "<name>#{@project_board.name}</name><node_id/></board>"
+      project_board_xml = "<board version=\"3\">\<id>#{@project_board.id}</id>"\
+      "<name>#{@project_board.name}</name><node_id>#{@project.methodology_library.id}</node_id></board>"
 
       expect(@result).to include(project_board_xml)
     end
@@ -40,3 +40,4 @@ describe 'Pro export template' do
     end
   end
 end
+

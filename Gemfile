@@ -213,7 +213,8 @@ gem 'dradis-plugins', '~>3.22'
 gem 'dradis-api', path: 'engines/dradis-api'
 
 # Import / export project data
-gem 'dradis-projects', '~>3.22'
+# gem 'dradis-projects', '~>3.22'
+gem 'dradis-projects', git: 'git@github.com:dradis/dradis-projects.git', branch: 'fix/assign-correct-methodology-libary-to-boards'
 
 plugins_file = 'Gemfile.plugins'
 if File.exists?(plugins_file)

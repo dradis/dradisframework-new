@@ -1,4 +1,13 @@
 GIT
+  remote: git@github.com:dradis/dradis-projects.git
+  revision: cad2540b4897470accba15e1fff980d321752cae
+  branch: fix/assign-correct-methodology-libary-to-boards
+  specs:
+    dradis-projects (3.22.0)
+      dradis-plugins (~> 3.7)
+      rubyzip
+
+GIT
   remote: git@github.com:paper-trail-gem/paper_trail.git
   revision: 1e56afdf846b3e6c338ff4fcd13a95334810b4d8
   ref: 1e56afd
@@ -124,9 +133,6 @@ GEM
     diff-lcs (1.4.4)
     differ (0.1.2)
     dradis-plugins (3.22.0)
-    dradis-projects (3.22.0)
-      dradis-plugins (~> 3.7)
-      rubyzip
     erubi (1.10.0)
     execjs (2.7.0)
     factory_bot (5.1.1)
@@ -481,7 +487,7 @@ DEPENDENCIES
   differ (~> 0.1.2)
   dradis-api!
   dradis-plugins (~> 3.22)
-  dradis-projects (~> 3.22)
+  dradis-projects!
   factory_bot_rails
   foreman
   guard-rspec
