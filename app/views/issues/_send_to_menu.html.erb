@@ -1,25 +1,26 @@
 <span class="dropdown-item dots-dropdown-header" tabindex="-1">Send to...</span>
+
 <% sync_plugins = Dradis::Plugins::with_feature(:issue_sync) %>
 
-<% cache ['send-to', sync_plugins.map(&:plugin_name)] do %>
-  <% if sync_plugins.any? %>
-    <% sync_plugins.each do |plugin| %>
-      <%=
-        plugin_path = ActiveSupport::Inflector.underscore(ActiveSupport::Inflector.deconstantize(plugin.name))
-        render partial: "#{plugin_path}/issues/send_to_menu"
-      %>
-    <% end %>
+<% if sync_plugins.any? %>
+  <% sync_plugins.each do |plugin| %>
+    <%=
+      plugin_path = ActiveSupport::Inflector.underscore(ActiveSupport::Inflector.deconstantize(plugin.name))
+      render partial: "#{plugin_path}/issues/send_to_menu"
+    %>
   <% end %>
-  <% unless defined?(Dradis::Pro) && defined?(Dradis::Pro::Plugins::Issuelib) %>
-    <% if sync_plugins.any? %>
+<% end %>
+
+<% unless defined?(Dradis::Pro) %>
+  <% if sync_plugins.any? %>
     <div class="divider"></div>
-    <% end %>
+  <% end %>
+
+  <% if defined?(Dradis::Pro::Plugins::Issuelib) %>
     <a href="javascript:void(0)" class="js-try-pro dropdown-item" data-term="issuelib" data-url="https://dradisframework.com/pro/pages/issuelib.html"><i class="fa fa-book fa-fw"></i> Built-in IssueLibrary</a>
   <% end %>
-  <% unless defined?(Dradis::Pro) && defined?(Dradis::Pro::Plugins::Remediationtracker) %>
-    <% if sync_plugins.any? %>
-    <div class="divider"></div>
-    <% end %>
+
+  <% if defined?(Dradis::Pro::Plugins::Remediationtracker) %>
     <a href="javascript:void(0)" class="js-try-pro dropdown-item" data-term="remediation" data-url="https://dradisframework.com/pro/add-ons/remediation.html"><i class="fa fa-tasks fa-fw"></i> Built-in Remediation Tracker</a>
   <% end %>
 <% end %>

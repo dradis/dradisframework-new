@@ -27,20 +27,20 @@
     <div class="content-container mt-0 pb-3 mr-xxl-3">
       <div class="tab-content mt-0">
         <div class="tab-pane <%= class_names(active: !params[:tab]) %>" id="info-tab">
-          <% cache ['issue-information-tab', @issue] do %>
-            <div class="note-text-inner">
-              <h4 class="mb-4 header-underline">
-                <span class="text-truncate" title="Issue information">Issue information</span>
-                  <%= render partial: 'actions' %>
-              </h4>
+          <div class="note-text-inner">
+            <h4 class="mb-4 header-underline">
+              <span class="text-truncate" title="Issue information">Issue information</span>
+                <%= render partial: 'actions' %>
+            </h4>
+            <% cache ['issue-information-tab', @issue] do %>
               <div class="content-textile" data-behavior="content-textile">
                 <%= markup(@issue.text, liquid: true) %>
               </div>
               <div class="author-info">
                 <span class="ml-auto">Author: <%= @issue.author || 'n/a' %></span>
               </div>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
 
         <div class="tab-pane <%= class_names(active: params[:tab] == 'evidence-tab') %>" id="evidence-tab">

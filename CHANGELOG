@@ -4,6 +4,7 @@ v4.3.0 ([month] 2022)
   - Upgraded gems:
     - nokogiri, puma, rails
   - Bugs fixes:
+    - Issues: Fixes incorret links in the "Send To" menu
     - Tables: Prevent columns state from resetting after 2 hours
     - [entity]:
       - [future tense verb] [bug fix]
