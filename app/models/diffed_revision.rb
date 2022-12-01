@@ -11,7 +11,7 @@ class DiffedRevision
   def diff
     @diff ||= Differ.diff_by_line(
                 after[content_attribute],
-                before[content_attribute]
+                before_content
               )
   end
 
@@ -40,6 +40,11 @@ class DiffedRevision
   def before
     # Version#object is the state of the object *before* the change was made.
     @before ||= YAML.load(@revision.object, permitted_classes: [ActiveSupport::TimeWithZone, Time, ActiveSupport::TimeZone], aliases: true)
+  end
+
+  def before_content
+    harmonized_version = before[content_attribute].include?("\r\n") ? before[content_attribute] : before[content_attribute].gsub("\n", "\r\n")
+    @revision.previous.event == 'create' ? harmonized_version : before[content_attribute]
   end
 
   def after
