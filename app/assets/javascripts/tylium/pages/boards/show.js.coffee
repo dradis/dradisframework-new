@@ -35,7 +35,7 @@ class SortableBoards
     return
 
 
-document.addEventListener "turbolinks:load", ->
+document.addEventListener "turbo:load", ->
 
   if $('body.boards.show').length
     # ------------------------------------------------------------- List modals

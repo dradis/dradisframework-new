@@ -1,4 +1,4 @@
-document.addEventListener "turbolinks:load", ->
+document.addEventListener "turbo:load", ->
 
   if $('.js-diff-body').length
     delRegex = /\[31m([\s\S]*?)\[0m/g

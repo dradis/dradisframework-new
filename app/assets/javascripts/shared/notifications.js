@@ -30,7 +30,7 @@ function initNotificationsDropdown() {
   }
 }
 
-document.addEventListener('turbolinks:load', function () {
+document.addEventListener('turbo:load', function () {
   initNotificationsDropdown();
 });
 

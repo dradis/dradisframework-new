@@ -1,7 +1,6 @@
 //= require jquery3
 //= require jquery-ui
 //= require rails-ujs
-//= require turbolinks
 // require activestorage
 //= require jquery.form
 //= require jquery.textchange.min

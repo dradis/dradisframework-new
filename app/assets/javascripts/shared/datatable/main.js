@@ -293,7 +293,7 @@ class DradisDatatable {
   unbindDataTable() {
     var that = this;
 
-    document.addEventListener('turbolinks:before-cache', function () {
+    document.addEventListener('turbo:before-cache', function () {
       that.dataTable.destroy();
     });
   }

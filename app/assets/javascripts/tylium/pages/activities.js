@@ -1,4 +1,4 @@
-document.addEventListener('turbolinks:load', function() {
+document.addEventListener('turbo:load', function() {
   var $infiniteScrollContainer = $('[data-behavior="infinite-scroll-container"]');
   var loading = false;
 

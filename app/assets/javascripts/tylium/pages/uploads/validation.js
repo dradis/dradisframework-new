@@ -1,4 +1,4 @@
-document.addEventListener('turbolinks:load', function() {
+document.addEventListener('turbo:load', function() {
   var $rtpValidation = $('[data-behavior~=rtp-validation]');
 
   if ($rtpValidation.length) {

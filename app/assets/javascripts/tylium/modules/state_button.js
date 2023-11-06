@@ -1,4 +1,4 @@
-document.addEventListener('turbolinks:load', function () {
+document.addEventListener('turbo:load', function () {
   if ($('[data-behavior~=state-radio]').length) {
     function updateBtn($selectedRadio) {
       var selectedState = $selectedRadio

@@ -1,4 +1,4 @@
-document.addEventListener "turbolinks:load", ->
+document.addEventListener "turbo:load", ->
   if $('body.export').length
 
     # Detect Export click

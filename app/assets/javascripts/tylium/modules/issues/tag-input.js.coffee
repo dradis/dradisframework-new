@@ -8,7 +8,7 @@ class @SelectTagDropdown
     $span.css("color", @$target.css("color"))
     $span.html(@$target.html())
 
-document.addEventListener "turbolinks:load", ->
+document.addEventListener "turbo:load", ->
   $('#issues_editor .js-taglink').click (e) ->
     $target = $(e.target)
     new SelectTagDropdown($target)

@@ -1,4 +1,28 @@
 GIT
+  remote: https://github.com/dradis/dradis-calculator_cvss.git
+  revision: 489eb724381a26daf5420e572f4a7e94510faa5b
+  branch: turbo
+  specs:
+    dradis-calculator_cvss (4.10.0)
+      dradis-plugins (~> 4.0)
+
+GIT
+  remote: https://github.com/dradis/dradis-calculator_dread.git
+  revision: f8367f6144c260bee1b1f11aca9afe1380f11bdf
+  branch: turbo
+  specs:
+    dradis-calculator_dread (4.10.0)
+      dradis-plugins (~> 4.0)
+
+GIT
+  remote: https://github.com/dradis/dradis-csv.git
+  revision: 8cc5e6d771d236fdce4f3e8ed99dc2ca3686b9b3
+  branch: turbo
+  specs:
+    dradis-csv (4.10.0)
+      dradis-plugins (~> 4.0)
+
+GIT
   remote: https://github.com/dradis/dradis-html_export.git
   revision: 70ccfe4e99d8cf077afe5aa5a97c73b2dd07049b
   branch: rails-7-upgrade
@@ -141,13 +165,7 @@ GEM
     dradis-burp (4.10.0)
       dradis-plugins (~> 4.0)
       nokogiri (~> 1.3)
-    dradis-calculator_cvss (4.10.0)
-      dradis-plugins (~> 4.0)
-    dradis-calculator_dread (4.10.0)
-      dradis-plugins (~> 4.0)
     dradis-coreimpact (4.10.0)
-      dradis-plugins (~> 4.0)
-    dradis-csv (4.10.0)
       dradis-plugins (~> 4.0)
     dradis-csv_export (4.10.0)
       dradis-plugins (>= 4.8.0)
@@ -486,9 +504,10 @@ GEM
       date
     timecop (0.9.5)
     timeout (0.4.0)
-    turbolinks (5.2.1)
-      turbolinks-source (~> 5.2)
-    turbolinks-source (5.2.0)
+    turbo-rails (1.5.0)
+      actionpack (>= 6.0.0)
+      activejob (>= 6.0.0)
+      railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.3.0)
@@ -539,10 +558,10 @@ DEPENDENCIES
   dradis-api!
   dradis-brakeman (~> 4.10.0)
   dradis-burp (~> 4.10.0)
-  dradis-calculator_cvss (~> 4.10.0)
-  dradis-calculator_dread (~> 4.10.0)
+  dradis-calculator_cvss!
+  dradis-calculator_dread!
   dradis-coreimpact (~> 4.10.0)
-  dradis-csv (~> 4.10.0)
+  dradis-csv!
   dradis-csv_export (~> 4.10.0)
   dradis-html_export!
   dradis-metasploit (~> 4.10.0)
@@ -614,7 +633,7 @@ DEPENDENCIES
   thor (~> 1.2.1)
   time (>= 0.2.2)
   timecop
-  turbolinks (~> 5)
+  turbo-rails (~> 1.4)
   unicorn (= 6.1.0)
   warden (~> 1.2.3)
   web-console (>= 4.1.0)

@@ -22,8 +22,7 @@ gem 'coffee-rails', '~> 5.0'
 # Cache-friendly, client-side local time
 gem 'local_time', '>= 2.0.0'
 
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+gem 'turbo-rails', '~> 1.4'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
@@ -236,15 +235,15 @@ end
 
 # ----------------------------------------------------------------- Calculators
 
-gem 'dradis-calculator_cvss', '~> 4.10.0'
-gem 'dradis-calculator_dread', '~> 4.10.0'
+gem 'dradis-calculator_cvss', github: 'dradis/dradis-calculator_cvss', branch: 'turbo'
+gem 'dradis-calculator_dread', github: 'dradis/dradis-calculator_dread', branch: 'turbo'
 
 # ---------------------------------------------------------------------- Export
 gem 'dradis-csv_export', '~> 4.10.0'
 gem 'dradis-html_export', github: 'dradis/dradis-html_export', branch: 'rails-7-upgrade'
 
 # ---------------------------------------------------------------------- Import
-gem 'dradis-csv', '~> 4.10.0'
+gem 'dradis-csv', github: 'dradis/dradis-csv', branch: 'turbo'
 
 # ---------------------------------------------------------------------- Upload
 gem 'dradis-acunetix', '~> 4.10.0'

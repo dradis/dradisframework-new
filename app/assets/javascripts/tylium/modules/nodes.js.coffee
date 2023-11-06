@@ -1,4 +1,4 @@
-document.addEventListener "turbolinks:load", ->
+document.addEventListener "turbo:load", ->
   $(".add_node_radio").click ->
     $this  = $(this)
     $modal = $this.closest(".modal")

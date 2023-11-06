@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <title><%= [content_for(:title), 'Dradis Community Edition'].compact.join(' | ') %></title>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'legacy.application', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track' => true %>
+    <%= javascript_include_tag 'legacy.application', 'data-turbo-track' => true %>
     <%= favicon_link_tag %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>

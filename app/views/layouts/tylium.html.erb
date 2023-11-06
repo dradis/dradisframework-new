@@ -11,7 +11,7 @@
     <% if flash.any? %>
       <% # when flash messages present, disable turbolinks cache to avoid
         # the message appear and disappear in the next page load %>
-      <meta name="turbolinks-cache-control" content="reload">
+      <meta name="turbo-cache-control" content="reload">
     <% end %>
 
     <%= render 'comments/mentionable_users' if @mentionable_users %>
@@ -21,8 +21,8 @@
         'data-unread': image_path('favicon-unread.ico'),
         'data-read': image_path('favicon.ico') %>
 
-    <%= stylesheet_link_tag 'tylium', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'tylium', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'tylium', media: 'all', 'data-turbo-track' => true %>
+    <%= javascript_include_tag 'tylium', 'data-turbo-track' => true %>
     <%= csrf_meta_tag %>
     <%= csp_meta_tag %>
     <%= javascript_importmap_tags %>

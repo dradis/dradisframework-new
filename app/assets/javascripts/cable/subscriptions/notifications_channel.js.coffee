@@ -2,7 +2,7 @@ App.cable.subscriptions.create 'NotificationsChannel',
   connected: ->
     console.log('Subscribed to NotificationsChannel.')
     @perform('check_unread', {})
-    $(document).on 'turbolinks:load.notifications', =>
+    $(document).on 'turbo:load.notifications', =>
       @perform('check_unread', {})
 
   rejected: ->

@@ -1,4 +1,4 @@
-document.addEventListener "turbolinks:load", ->
+document.addEventListener "turbo:load", ->
   if $('body.upload').length
     # Enable Ajax file uploads via 3rd party plugin
     $bar = $('.progress-bar');

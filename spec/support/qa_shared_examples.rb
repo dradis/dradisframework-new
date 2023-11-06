@@ -18,7 +18,7 @@ shared_examples 'qa pages' do |item_type|
       find('.dataTable tbody tr:first-of-type').hover
       click_link 'Edit'
 
-      expect(current_path).to eq polymorphic_path([:edit, current_project, :qa, records.first])
+      expect(page).to have_current_path(polymorphic_path([:edit, current_project, :qa, records.first]))
 
       click_button "Update #{item_type.to_s.titleize}"
 

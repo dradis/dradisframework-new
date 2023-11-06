@@ -1,4 +1,4 @@
-document.addEventListener('turbolinks:load', function () {
+document.addEventListener('turbo:load', function () {
   if ($('body.upload.index').length) {
     $('[data-behavior~=tool-select]').on('change', function () {
       let toolsWithInheritedState = [

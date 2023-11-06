@@ -88,7 +88,7 @@
     });
   }
 
-  document.addEventListener('turbolinks:load', function () {
+  document.addEventListener('turbo:load', function () {
     initBehaviors(document.querySelector('body'));
   });
 

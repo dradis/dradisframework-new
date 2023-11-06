@@ -1,6 +1,7 @@
 [v#.#.#] ([month] [YYYY])
   - Upgrade to Rails 7.0.8
   - Add importmap-rails to handle js libraries
+  - Remove turbolinks and add turbo-rails
   - Upgraded gems:
     - [gem]
   - Bugs fixes:

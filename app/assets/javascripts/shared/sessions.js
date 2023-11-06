@@ -1,4 +1,4 @@
-document.addEventListener('turbolinks:load', function() {
+document.addEventListener('turbo:load', function() {
   if ($('body.unauthenticated').length) {
     var charCount = 0,
         strings = setStrings(),

@@ -1,4 +1,4 @@
-document.addEventListener "turbolinks:load", ->
+document.addEventListener "turbo:load", ->
   if $('body.evidence.new').length
     $('#evidence-host-list a[data-bs-toggle~=pill]').on 'click', (ev)->
       path   = $(this).data('path')

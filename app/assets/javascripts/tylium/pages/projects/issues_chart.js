@@ -1,4 +1,4 @@
-document.addEventListener('turbolinks:load', function(){
+document.addEventListener('turbo:load', function(){
   var $dataElement  = $('#issues-summary-data'),
       $chartElement = $('#issue-chart');
 

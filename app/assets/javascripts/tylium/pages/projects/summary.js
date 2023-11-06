@@ -1,4 +1,4 @@
-document.addEventListener('turbolinks:load', function () {
+document.addEventListener('turbo:load', function () {
   if ($('body.projects.show').length) {
     $('a[data-bs-toggle="collapse"]').click(function () {
       if ($(this).hasClass('collapsed')) {

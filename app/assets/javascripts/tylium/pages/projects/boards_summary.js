@@ -1,4 +1,4 @@
-document.addEventListener('turbolinks:load', function(){
+document.addEventListener('turbo:load', function(){
   if ($('[data-behavior~=boards-summary]').length) {
     var $boardsSummary = $('[data-behavior~=boards-summary]');
     var url = $boardsSummary.data('url');

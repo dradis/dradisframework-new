@@ -1,5 +1,5 @@
 (function() {
-  document.addEventListener('turbolinks:load', function() {
+  document.addEventListener('turbo:load', function() {
     var copyOver = function($to, fromVal, $typeTo, typeFromVal) {
       if ($to.val() === '' && fromVal !== '') {
         $to.val(fromVal.trim().split('\n')[0] + '\n');

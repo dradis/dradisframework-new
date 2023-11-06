@@ -16,14 +16,14 @@ if (anyLogs) {
   var close_url = $('#result').data('close-url');
 
   if (!working && close_url) {
-    if (window.Turbolinks) { // Turbolinks is only present in tylium:
+    if (window.Turbo) {
       $('#modal-console').on('hide', function() {
-        Turbolinks.clearCache();
-        Turbolinks.visit(close_url);
+        Turbo.cache.clear();
+        Turbo.visit(close_url);
       });
       $("#modal-console .modal-footer").removeClass('d-none');
     } else if (window.location != close_url)  {
-      // if Turbolinks isn't present, do it the old-fashioned way:
+      // if Turbo isn't present, do it the old-fashioned way:
       window.location = close_url;
     } else { // if .location == close_url, we need to do it this way:
       window.location.reload(true);

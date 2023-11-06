@@ -30,13 +30,13 @@ function fileUploadInit() {
   });
 }
 
-document.addEventListener("turbolinks:load", function() {
+document.addEventListener("turbo:load", function() {
   // Bind fileUpload on page load.
   fileUploadInit();
 });
 
 // Un-bind fileUpload on page unload.
-document.addEventListener('turbolinks:before-cache', function() {
+document.addEventListener('turbo:before-cache', function() {
   $('[data-behavior~=jquery-upload]').each(function() {
     $(this).fileupload('destroy');
   });

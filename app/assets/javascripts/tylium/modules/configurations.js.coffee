@@ -1,4 +1,4 @@
-document.addEventListener "turbolinks:load", ->
+document.addEventListener "turbo:load", ->
   if $('body.configurations').length
 
     $('tbody tr.gemified td.value').on('blur', 'input', ->
