@@ -1,10 +1,11 @@
 development:
-  adapter: async
+  adapter: <%= defined?(Dradis::Pro) ? 'redis' : 'async' %>
+  url: <%= ENV.fetch('REDIS_URL') { 'redis://localhost:6379/1' } %>
 
 test:
   adapter: test
 
 production:
-  adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+  adapter: <%= defined?(Dradis::Pro) ? 'redis' : 'async' %>
+  url: <%= ENV.fetch('REDIS_URL') { 'redis://localhost:6379/1' } %>
   channel_prefix: dradispro_production

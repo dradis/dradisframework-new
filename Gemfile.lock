@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/dradis/dradis-plugins.git
-  revision: e69d1f42c85f647662307019b8b492152a5c3c29
-  branch: fix/template-caching
+  revision: 3d7ab379ee8c12c22020746222d4998e128f2c17
+  branch: do/add-preprovision-db
   specs:
     dradis-plugins (4.11.0)
 

@@ -213,7 +213,7 @@ end
 #
 
 # Base framework classes required by other plugins
-gem 'dradis-plugins', github: 'dradis/dradis-plugins', branch: 'fix/template-caching'
+gem 'dradis-plugins', github: 'dradis/dradis-plugins', branch: 'do/add-preprovision-db'
 
 gem 'dradis-api', path: 'engines/dradis-api'
 

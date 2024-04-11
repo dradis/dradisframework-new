@@ -4,6 +4,7 @@
   - Upgraded gems:
     - nokogiri, rails
   - Bugs fixes:
+    - Digital Ocean: Fix one click deploy button
     - Tylium: Fix redirection when updating an issue or content block
     - Bug tracker items:
       - [item]

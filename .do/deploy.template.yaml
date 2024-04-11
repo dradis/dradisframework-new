@@ -10,7 +10,7 @@ spec:
       value: enabled
       scope: RUN_TIME
     git:
-      branch: develop
+      branch: fix-heroku-1-click
       repo_clone_url: https://github.com/dradis/dradis-ce.git
     name: web
     run_command: ./bin/setup
