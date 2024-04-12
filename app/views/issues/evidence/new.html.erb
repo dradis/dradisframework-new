@@ -1,10 +1,10 @@
-<% content_for :title, "Add new evidence for #{@issue.title}" %>
+<% content_for :title, "Add new evidence for #{ liquid_text(@issue.title) }" %>
 
 <% content_for :breadcrumbs do %>
   <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><%= link_to 'All issues', project_issues_path(current_project) %></li>
-      <li class="breadcrumb-item"><%= link_to @issue.title, project_issue_path(current_project, @issue, tab: 'evidence-tab') %></li>
+      <li class="breadcrumb-item"><%= link_to liquid_text(@issue.title), project_issue_path(current_project, @issue, tab: 'evidence-tab') %></li>
       <li class="breadcrumb-item active">New Evidence</li>
     </ol>
   </nav>
@@ -29,7 +29,7 @@
     <div id="issues_editor">
       <div class="note-text-inner">
         <h4 class="header-underline">Add new evidence</h4>
-        <p class="mb-4 pb-3">Add evidence of <em><%= @issue.title ? @issue.title : "Issue ##{@issue.id}" %></em> by selecting or adding nodes below.</p>
+        <p class="mb-4 pb-3">Add evidence of <em><%= @issue.title ? liquid_text(@issue.title) : "Issue ##{@issue.id}" %></em> by selecting or adding nodes below.</p>
         <div class="row">
 
           <div class="col-xl-4">

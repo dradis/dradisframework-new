@@ -20,7 +20,7 @@
       <% cache ['issue-content', @issue] do %>
         <div class="note-text-inner">
           <h4 class="mb-4 header-underline align-items-center">
-            <span class="text-truncate" title="<%= @issue.title %>"><%= @issue.title %></span>
+            <span class="text-truncate" title="<%= liquid_text(@issue.title) %>"><%= liquid_text(@issue.title) %></span>
             <span class="actions">
               <span class="action">
                 <%= link_to edit_project_qa_issue_path(current_project, @issue) do %>

@@ -16,7 +16,7 @@
                 <ul class="list-group">
                   <% @issues_by_tag[tag.name].each do |issue| %>
                     <%= link_to [current_project, issue], class: 'list-group-item'  do %>
-                      <li><i class="fa-solid fa-bug me-2" style="color: <%= tag.color %>"></i><%= issue.title %></li>
+                      <li><i class="fa-solid fa-bug me-2" style="color: <%= tag.color %>"></i><%= liquid_text(issue.title) %></li>
                     <% end %>
                   <% end %>
                 </ul>
@@ -38,7 +38,7 @@
               <ul class="list-group">
                 <% @issues_by_tag[:unassigned].each do |issue| %>
                   <%= link_to [current_project, issue], class: 'list-group-item'  do %>
-                    <li><i class="fa-solid fa-bug me-2"></i><%= issue.title %></li>
+                    <li><i class="fa-solid fa-bug me-2"></i><%= liquid_text(issue.title) %></li>
                   <% end %>
                 <% end %>
               </ul>

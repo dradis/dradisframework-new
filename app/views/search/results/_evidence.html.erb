@@ -4,7 +4,7 @@
 <%= link_to title, project_node_evidence_path(row.node.project, row.node_id, row), class: "search-match-title" %>
 
 <div class="result-details">
-  <p><span>Issue:</span> <%= link_to row.issue.title, project_issue_path(current_project, row.issue) %></p>
+  <p><span>Issue:</span> <%= link_to liquid_text(row.issue.title), project_issue_path(current_project, row.issue) %></p>
   <p><span>Node:</span> <%= link_to row.node.label, project_node_path(row.node.project, row.node) %></p>
   <p><span>Last updated:</span> <%= local_time_ago(row.updated_at) %></p>
 </div>

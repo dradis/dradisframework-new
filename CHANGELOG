@@ -5,6 +5,7 @@
     - nokogiri, rails
   - Bugs fixes:
     - Tylium: Fix redirection when updating an issue or content block
+    - Issues: Render liquid content within the title throughout the app
     - Bug tracker items:
       - [item]
   - New integrations:

@@ -1,4 +1,4 @@
-<% content_for :title, "View evidence for #{@node.label} / #{@evidence.issue.title}" %>
+<% content_for :title, "View evidence for #{@node.label} / #{liquid_text(@evidence.issue.title)}" %>
 
 <% if @conflicting_revisions %>
   <%= render "projects/conflicting_revisions", conflicts: @conflicting_revisions, record: @evidence %>

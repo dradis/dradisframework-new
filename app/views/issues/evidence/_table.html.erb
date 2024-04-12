@@ -31,7 +31,7 @@
               when 'Updated'
                 [evidence.updated_at.to_i, local_time_ago(evidence.updated_at)]
               else
-                [evidence.fields.fetch(column, ''), markup(evidence.fields.fetch(column, ''))]
+                [evidence.fields.fetch(column, ''), liquid_text(evidence.fields.fetch(column, ''))]
               end
             %>
             <td data-sort="<%= sort %>"><%= display %></td>

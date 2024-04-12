@@ -39,7 +39,7 @@
                     sort, display =
                     case column
                     when 'Title'
-                      [issue.title, issue.title]
+                      [liquid_text(issue.title), liquid_text(issue.title)]
                     when 'Tags'
                       [issue_tags(issue), issue_tags(issue)]
                     else

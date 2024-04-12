@@ -57,7 +57,7 @@
                 <div class="radio">
                   <%= label_tag nil, :class => 'w-100' do %>
                     <%= radio_button_tag "id", issue.id, i == 0 %>
-                    Merge into <%= issue.title %>
+                    Merge into <%= liquid_text(issue.title) %>
                     <%= link_to raw('<i class="fa-solid fa-chevron-down"></i>'), "#preview_issue_#{issue.id}", class: 'issue-toggle pull-right', data: { bs_toggle: 'collapse' } %>
                   <% end %>
                 </div>

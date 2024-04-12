@@ -6,6 +6,7 @@ class EvidenceController < NestedNodeResourceController
   include MultipleDestroy
   include NodesSidebar
   include NotificationsReader
+  include ProjectScoped
 
   before_action :set_or_initialize_evidence, except: [ :index, :create_multiple ]
   before_action :initialize_nodes_sidebar, only: [ :edit, :new, :show ]

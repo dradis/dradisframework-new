@@ -2,6 +2,7 @@
 class NestedNodeResourceController < AuthenticatedController
   include ActivityTracking
   include ContentFromTemplate
+  include LiquidEnabledResource
   include ProjectScoped
 
   before_action :find_or_initialize_node

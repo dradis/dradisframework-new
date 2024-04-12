@@ -1,5 +1,5 @@
 module ApplicationHelper # :nodoc:
-  def markup(text, options={})
+  def markup(text, options = {})
     return unless text.present?
 
     context = {}
@@ -25,6 +25,10 @@ module ApplicationHelper # :nodoc:
     textile_pipeline = HTML::Pipeline.new pipeline_filters, context
     result = textile_pipeline.call(text)
     result[:output].to_s.html_safe
+  end
+
+  def liquid_text(text)
+    strip_tags(markup(text, liquid: true))
   end
 
   def render_view_hooks(partial, locals: {}, feature: :addon)

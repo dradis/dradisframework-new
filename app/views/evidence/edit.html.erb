@@ -1,4 +1,4 @@
-<% content_for :title, "Edit evidence for #{@node.label} / #{@evidence.issue.title}" %>
+<% content_for :title, "Edit evidence for #{@node.label} / #{liquid_text(@evidence.issue.title)}" %>
 
 <% content_for :breadcrumbs do %>
   <nav>

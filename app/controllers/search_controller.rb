@@ -1,4 +1,5 @@
 class SearchController < AuthenticatedController
+  include LiquidEnabledResource
   include ProjectScoped
   include SearchHelper
 
@@ -15,11 +16,13 @@ class SearchController < AuthenticatedController
 
   private
   def set_scope
-    @scope = if params[:scope].blank? ||
-                  !%{all evidence issues nodes notes}.include?(params[:scope])
-               :all
-             else
-               params[:scope].to_sym
-             end
+    @scope =
+      if params[:scope].blank? ||
+         !%{all cards content_blocks evidence issues nodes notes}.\
+           include?(params[:scope])
+        :all
+      else
+        params[:scope].to_sym
+      end
   end
 end

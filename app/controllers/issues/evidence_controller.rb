@@ -2,6 +2,7 @@ class Issues::EvidenceController < AuthenticatedController
   include ActivityTracking
   include ContentFromTemplate
   include DynamicFieldNamesCacher
+  include LiquidEnabledResource
   include MultipleDestroy
   include ProjectScoped
 

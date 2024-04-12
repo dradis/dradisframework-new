@@ -25,10 +25,11 @@
           <tr id="issue-<%= issue.id %>" data-tag-url="<%= project_issue_path(current_project, issue) %>">
             <td class="select-checkbox" data-behavior="select-checkbox"></td>
             <% @all_columns.each do |column| %>
+              <% title = strip_tags(markup(issue.title, liquid: true)) %>
               <% sort, display =
                 case column
                 when 'Title'
-                  [issue.title, (link_to(issue.title, [current_project, issue], data: { qa_visible: false } ) + link_to(issue.title, project_qa_issue_path(current_project, issue), class: 'd-none', data: { qa_visible: true }))]
+                  [title, (link_to(title, [current_project, issue], data: { qa_visible: false } ) + link_to(title, project_qa_issue_path(current_project, issue), class: 'd-none', data: { qa_visible: true }))]
                 when 'Tags'
                   [
                     issue.tags.any? ? issue.tags.first.display_name : '',

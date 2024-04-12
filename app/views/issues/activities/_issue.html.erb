@@ -1,6 +1,6 @@
 <% if issue %>
   <% if issue.title? %>
-    <%= presenter.verb %> the <%= link_to issue.title, project_issue_path(current_project, issue) %> <%= activity.action == 'state_change' ? "issue's state to #{issue.state.humanize.downcase}" : 'issue' %>.
+    <%= presenter.verb %> the <%= link_to liquid_text(issue.title), project_issue_path(current_project, issue) %> <%= activity.action == 'state_change' ? "issue's state to #{issue.state.humanize.downcase}" : 'issue' %>.
   <% else %>
     <%= presenter.verb %> <%= link_to "Issue ##{issue.id}", project_issue_path(current_project, issue) %>.
   <% end %>

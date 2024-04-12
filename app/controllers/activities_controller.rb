@@ -2,6 +2,7 @@
 # users.
 
 class ActivitiesController < AuthenticatedController
+  include LiquidEnabledResource
   include ProjectScoped
 
   def index

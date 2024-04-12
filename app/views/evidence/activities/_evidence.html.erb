@@ -3,7 +3,7 @@
   <% node  = evidence.node %>
   <%= presenter.verb %> <%= link_to 'a piece of evidence', [current_project, node, evidence] %>
   for
-  <%= link_to issue.title || "Issue #{issue.id}", [current_project, evidence.issue] %> at <%= link_to node.label, [current_project, node] %>.
+  <%= link_to liquid_text(issue.title) || "Issue #{issue.id}", [current_project, evidence.issue] %> at <%= link_to node.label, [current_project, node] %>.
 <% else %>
   <% if activity.action == 'destroy' %>
     deleted a piece of evidence.
