@@ -1,6 +1,5 @@
 [v#.#.#] ([month] [YYYY])
-  - [entity]:
-    - [future tense verb] [feature]
+  - Heroku: Remove one click deploy button
   - Upgraded gems:
     - [gem]
   - Bugs fixes:
