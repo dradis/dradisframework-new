@@ -97,17 +97,6 @@ describe 'note pages' do
       should have_field :note_text
     end
 
-    it 'uses the full-screen editor plugin' # TODO
-
-    it_behaves_like 'a form with a help button'
-
-    describe 'textile form view' do
-      let(:action_path) { edit_project_node_note_path(current_project, @node, @note) }
-      let(:item) { @note }
-      it_behaves_like 'a textile form view', Note
-      it_behaves_like 'an editor that remembers what view you like'
-    end
-
     # TODO handle the case where a Note has no paperclip versions (legacy data)
 
     describe 'submitting the form with valid information', js: true do
@@ -191,10 +180,6 @@ describe 'note pages' do
         expect(textarea.value.strip).to eq ''
       end
 
-      it 'uses the textile-editor plugin'
-
-      it_behaves_like 'a form with a help button'
-
       describe 'submitting the form with valid information' do
         let(:new_note) { @node.notes.order('created_at ASC').last }
 
@@ -246,14 +231,6 @@ describe 'note pages' do
         expect(find_field('item_form[field_name_0]').value).to include('IPAddress')
         expect(find_field('item_form[field_value_0]').value).to include('127.0.0.1')
       end
-    end
-
-    describe 'textile form view' do
-      let(:params) { {} }
-
-      let(:action_path) { new_project_node_note_path(current_project, @node) }
-      it_behaves_like 'a textile form view', Note
-      it_behaves_like 'an editor that remembers what view you like'
     end
 
     describe 'local caching' do

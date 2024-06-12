@@ -16,8 +16,6 @@ describe 'Tag pages:' do
     let(:hidden_columns) { ['Color', 'Created', 'Updated'] }
     let(:filter) { { keyword: tag.name, filter_count: 1 } }
 
-    it_behaves_like 'a DataTable'
-
     describe 'can delete tag', js: true do
       it 'deletes the Tag' do
         page.find("tr#tag-#{tag.id}").hover

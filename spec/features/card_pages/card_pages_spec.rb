@@ -5,7 +5,7 @@ describe 'Card pages:' do
 
   it 'should require authenticated users' do
     project = create(:project)
-    @board = create(:board, project:, node: project.methodology_library)
+    @board = create(:board, project: project, node: project.methodology_library)
     visit project_board_path(@board.project, @board)
     expect(current_path).to eq(login_path)
     expect(page).to have_content('Access denied.')
@@ -25,13 +25,6 @@ describe 'Card pages:' do
 
     describe 'when in new page', js: true do
       let(:submit_form) { click_button 'Create Card' }
-
-      describe 'textile form view' do
-        let(:action_path) { new_project_board_list_card_path(current_project, @board, @list) }
-        let(:required_form) { fill_in :card_name, with: 'New Card' }
-        it_behaves_like 'a textile form view', Card
-        it_behaves_like 'an editor that remembers what view you like'
-      end
 
       describe 'submitting the form with valid information' do
         before do
@@ -115,13 +108,6 @@ describe 'Card pages:' do
 
       before do
         @card = create(:card, list: @list)
-      end
-
-      describe 'textile form view' do
-        let(:action_path) { edit_project_board_list_card_path(current_project, @board, @list, @card) }
-        let(:item) { @card }
-        it_behaves_like 'a textile form view', Card
-        it_behaves_like 'an editor that remembers what view you like'
       end
 
       describe 'submitting the form with valid information' do

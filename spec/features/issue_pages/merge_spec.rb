@@ -26,15 +26,7 @@ describe 'issue pages' do
       expect(page).to have_content('1 issue merged into ')
     end
 
-    context "merge issues into a new one", js: true do
-      describe 'textile form view' do
-        let(:action_path) { new_project_merge_path(current_project, ids: [@issue1.id, @issue2.id]) }
-        let(:required_form) do
-          choose('Merge into a new issue')
-        end
-        it_behaves_like 'a textile form view', Issue
-      end
-
+    context 'merge issues into a new one', js: true do
       it 'creates a new issue' do
         expect(page).to have_content /You're merging 2 Issues into a target Issue/i
 

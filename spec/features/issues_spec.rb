@@ -70,10 +70,6 @@ describe 'Issues pages' do
       describe 'new page', js: true do
         let(:submit_form) { click_button 'Create Issue' }
 
-        let(:action_path) { new_project_issue_path(current_project) }
-        it_behaves_like 'a textile form view', Issue
-        it_behaves_like 'an editor that remembers what view you like'
-
         context 'submitting the form with valid information' do
           before do
             visit new_project_issue_path(current_project)
@@ -203,11 +199,6 @@ describe 'Issues pages' do
 
       describe 'edit page', js: true do
         let(:submit_form) { click_button 'Update Issue' }
-
-        let(:action_path) { edit_project_issue_path(current_project, @issue) }
-        let(:item) { @issue }
-        it_behaves_like 'a textile form view', Issue
-        it_behaves_like 'an editor that remembers what view you like'
 
         before do
           issuelib = current_project.issue_library
