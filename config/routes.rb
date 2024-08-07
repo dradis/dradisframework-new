@@ -109,6 +109,8 @@ Rails.application.routes.draw do
 
     resources :tags, except: [:show]
 
+    resources :tasks, only: :index
+
     namespace :qa do
       resources :issues, only: [:edit, :index, :show, :update], concerns: [:multiple_update, :previewable]
     end
