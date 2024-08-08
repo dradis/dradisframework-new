@@ -1,6 +1,9 @@
 v4.13.0 (July 2024)
   - Attachments: Copy attachments when moving an evidence/note
   - Liquid: Make project-level collections available for Liquid syntax
+  - Session time out:
+    - Inform users to re-login when using the editor while timed out
+    - Return users to the last view before the session timed out
   - Upgraded gems: nokogiri, rails, redcloth, rexml
   - Bugs fixes:
     - Navigation: Restore functionality of native browser back/forward buttons

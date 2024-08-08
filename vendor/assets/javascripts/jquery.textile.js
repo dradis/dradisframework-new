@@ -210,6 +210,7 @@
       $.post({
         url: this.$element.data('paths').preview_url,
         data: JSON.stringify(data),
+        dataType: 'html',
         contentType: 'application/json',
         success: function(result) {
           this.options.$preview.removeClass('loading-indicator').html(result);
@@ -218,6 +219,9 @@
           }
           this.options.$preview.children(':first').addClass('textile-preview');
           this._previewRendered = true;
+        }.bind(this),
+        error: function() {
+          this._showTimeoutMessage();
         }.bind(this)
       });
     },
@@ -229,6 +233,9 @@
         contentType: 'application/json',
         success: function(result){
           this.$element.val(result);
+        }.bind(this),
+        error: function() {
+          this._showTimeoutMessage();
         }.bind(this)
       });
     },
@@ -337,6 +344,15 @@
       if (localStorage.getItem(this.options.defaultViewKey) == 'source' || !this._contentHasFields) {
         this._onBtnSource();
       }
+    },
+
+    _showTimeoutMessage: function() {
+      var that = this;
+      that.options.$preview.parent().find('.alert').remove();
+      that.options.$preview.prepend('<p class="alert alert-danger">Your session has expired!. Login again to continue.</p>');
+      $('[data-behavior~=textile-wrap]').animate({
+        scrollTop: that.options.$preview.scrollTop()
+      });
     }
   };
 

@@ -49,11 +49,58 @@ describe 'Sessions' do
     it 'redirect to login with a message' do
       login
 
-      Timecop.freeze(Time.now + 1.hour) do
-        visit project_path(Project.find(1))
+      travel_to(Time.now + 1.hour)
+      visit project_path(Project.find(1))
 
-        expect(current_path).to eq(login_path)
-        expect(page).to have_content('Session timed out!')
+      expect(current_path).to eq(login_path)
+      expect(page).to have_content('Session timed out!')
+    end
+
+    describe 'return after timeout' do
+      let(:project) { create(:project) }
+
+      let(:submit_login_details) do
+        fill_in 'login', with: user.email
+        fill_in 'password', with: password
+        click_button 'Log in'
+      end
+
+      before do
+        login
+      end
+
+      it 'redirects to previous page' do
+        travel_to(Time.now + 1.hour)
+        visit new_project_issue_path(project)
+        submit_login_details
+        expect(current_path).to eq(new_project_issue_path(project))
+      end
+
+      context 'when editing in Source view while timed out' do
+        it 'shows an alert on the page', js: true do
+          visit new_project_issue_path(project)
+          click_link 'Source'
+
+          travel_to(Time.now + 1.hour)
+
+          fill_in :issue_text, with: 'some text'
+          expect(page).to have_text('Your session has expired!. Login again to continue.')
+        end
+      end
+
+      context 'when editing in Fields view while timed out' do
+        it 'shows an alert on the page', js: true do
+          visit new_project_issue_path(project)
+          click_link 'Fields'
+
+          # Wait for ajax
+          find('.textile-form-field')
+
+          travel_to(Time.now + 1.hour)
+
+          fill_in 'item_form_field_name_0', with: 'some text'
+          expect(page).to have_text('Your session has expired!. Login again to continue.')
+        end
       end
     end
   end
