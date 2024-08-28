@@ -46,5 +46,37 @@ describe 'Pro export template', skip: true do
 
       expect(@result).to include(node_board_xml)
     end
+
+    context 'card with a comment' do
+      let(:card) do
+        board = create(:board, node: current_project.methodology_library, project: current_project)
+        list = create(:list, board: board)
+        create(:card, list: list)
+      end
+
+      let(:comment) do
+        create(:comment,
+          content: 'Sample card comment',
+          commentable: card,
+          user: @logged_in_as
+        )
+      end
+
+      it 'creates the comment xml' do
+        export_options = {
+          plugin: Dradis::Plugins::Projects,
+          project_id: current_project.id
+        }
+        exporter =
+          Dradis::Plugins::Projects::Export::V3::Template.new(export_options)
+
+        comment_xml = "<comment>"\
+          "<content><![CDATA[Sample card comment]]></content>"\
+          "<author>#{@logged_in_as.email}</author>"\
+          "<created_at>#{comment.created_at.to_i}</created_at>"\
+          "</comment>"
+        expect(exporter.export).to include(comment_xml)
+      end
+    end
   end
 end

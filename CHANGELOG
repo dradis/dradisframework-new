@@ -5,6 +5,7 @@
   - Bugs fixes:
     - [entity]:
       - [future tense verb] [bug fix]
+    - Project export: Fix export for comments in cards
     - Bug tracker items:
       - [item]
   - New integrations:
