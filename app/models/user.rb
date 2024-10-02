@@ -5,6 +5,8 @@ class User < ApplicationRecord
   validates_associated :preferences
 
   # -- Relationships --------------------------------------------------------
+  has_and_belongs_to_many :cards
+
   has_many :activities
   has_many :comments, dependent: :nullify
   has_many :notifications, foreign_key: 'recipient_id', dependent: :destroy

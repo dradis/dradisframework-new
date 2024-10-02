@@ -4,22 +4,27 @@
 
   <div class="scrollable-content">
     <ul id="main-menu" class="main-menu">
-      <%= content_tag :li, :class => controller_path == 'projects' ? 'active' : '' do %>
+      <%= content_tag :li, class: controller_path == 'projects' ? 'active' : '' do %>
         <%= link_to main_app.project_path(current_project), class: 'sidebar-link', data: { behavior: 'sidebar-link' } do %>
           <i class="fa-solid fa-tachometer sidebar-link-icon"></i> <span class="sidebar-link-label">Dashboard</span>
         <% end %>
       <% end %>
-      <%= content_tag :li, :class => controller_path.include?('issues') ? 'active' : '' do %>
+      <%= content_tag :li, class: controller_path.include?('issues') ? 'active' : '' do %>
         <%= link_to main_app.project_issues_path(current_project), class: 'sidebar-link', data: { behavior: 'sidebar-link' } do %>
           <i class="fa-solid fa-bug sidebar-link-icon"></i> <span class="sidebar-link-label">All issues</span>
         <% end %>
       <% end %>
-      <%= content_tag :li, :class => controller_path == 'boards' || controller_path == 'cards' ? 'active' : '' do %>
+      <%= content_tag :li, class: controller_path == 'boards' || controller_path == 'cards' ? 'active' : '' do %>
         <%= link_to main_app.project_boards_path(current_project), class: 'sidebar-link', data: { behavior: 'sidebar-link' } do %>
           <i class="fa-brands fa-trello sidebar-link-icon"></i> <span class="sidebar-link-label">Methodologies</span>
         <% end %>
       <% end %>
-      <%= content_tag :li, :class => action_name == 'trash' ? 'active' : '' do %>
+      <%= content_tag :li, class: controller_path == 'tasks' ? 'active' : '' do %>
+        <%= link_to main_app.project_tasks_path(current_project), class: 'sidebar-link', data: { behavior: 'sidebar-link' } do %>
+          <i class="fa-solid fa-tasks sidebar-link-icon"></i> <span class="sidebar-link-label">My Tasks</span>
+        <% end %>
+      <% end %>
+      <%= content_tag :li, class: action_name == 'trash' ? 'active' : '' do %>
         <%= link_to main_app.project_trash_path(current_project), class: 'sidebar-link', data: { behavior: 'sidebar-link' } do %>
           <i class="fa-solid fa-trash sidebar-link-icon" aria-hidden="true"></i> <span class="sidebar-link-label">Trash</span>
         <% end %>

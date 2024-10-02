@@ -33,6 +33,10 @@ a {
   background-color: $primaryColor !important;
 }
 
+.bg-warning {
+  color: $defaultText;
+}
+
 blockquote {
   border-left: 3px solid $primaryColor;
   padding-left: 1rem;

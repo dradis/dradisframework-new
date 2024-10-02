@@ -1,5 +1,8 @@
 [v#.#.#] ([month] [YYYY])
   - Kit Import: Use file name sequencing when a template file with the same name exists
+  - Tasks:
+    - Add view with user assigned tasks
+    - Add dashboard widget for quick access to assigned tasks
   - Upgraded gems:
     - puma, rexml
   - Bugs fixes:

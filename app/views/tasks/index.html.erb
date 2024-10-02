@@ -1,0 +1,53 @@
+<% content_for :title, 'My Tasks' %>
+
+<div class="content-container mt-3">
+  <% if @tasks.any? %>
+    <table class="table table-striped align-middle"
+            data-behavior="dradis-datatable"
+            data-default-columns="<%= @default_columns %>"
+            data-local-storage-key="<%= @local_storage_key %>">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <% unless params[:project_id] %>
+            <th>Project</th>
+          <% end %>
+          <th>Methodology</th>
+          <th>List</th>
+          <th>Due Date</th>
+          <th>Assigned</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tasks.each do |task| %>
+          <tr>
+            <td data-sort="<%= task.name %>">
+              <%= link_to task.name, project_board_list_card_path(task.project, task.board, task.list, task) %>
+            </td>
+            <% unless params[:project_id] %>
+              <td data-sort="<%= task.project.name %>"><%= task.project.name %></td>
+            <% end %>
+            <td data-sort="<%= task.board.name %>"><%= task.board.name %></td>
+            <td data-sort="<%= task.list.name %>"><%= task.list.name %></td>
+            <td data-sort="<%= task.due_date || 'no-due-date' %>"><%= due_date_badge(task) %></td>
+            <td>
+              <ul class="d-flex flex-wrap m-0 p-0">
+                <% task.assignees.each do |assignee| %>
+                  <li class="d-inline-flex" data-bs-toggle="tooltip" data-bs-placement="top" title="<%= assignee.name %>">
+                    <%= avatar_image(assignee, size: 30) %>
+                  </li>
+                <% end %>
+              </ul>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <%= render 'shared/empty_state',
+      name: 'task',
+      docs_link: 'https://dradis.com/support/guides/projects/methodologies.html#task',
+      text: "Use this space to stay on top of tasks once they're assigned."
+    %>
+  <% end %>
+</div>

@@ -9,7 +9,7 @@ class NotificationsReaderJob < ApplicationJob
     Notification.transaction do
       @notifiable = notifiable_type.constantize.find_by(id: notifiable_id)
 
-      mark_notifications_from_assignments if NOTIFIABLE_TYPES.include?(notifiable_type)
+      mark_notifications_from_tasks if NOTIFIABLE_TYPES.include?(notifiable_type)
       mark_notifications_from_comments
 
       if Notification.unread.where(recipient_id: user_id).count == 0
@@ -20,8 +20,8 @@ class NotificationsReaderJob < ApplicationJob
 
   private
 
-  # Mark all assignment notifications from the notifiable as read
-  def mark_notifications_from_assignments
+  # Mark all task notifications from the notifiable as read
+  def mark_notifications_from_tasks
     @notifiable.notifications.unread.where(recipient_id: @user_id, action: :assign).
       mark_all_as_read!
   end

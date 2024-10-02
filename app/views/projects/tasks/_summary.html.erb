@@ -1,0 +1,38 @@
+<section class="summary-panel">
+  <h4 class="header-underline">My Tasks
+    <span class="actions pt-1">
+      <div class="action">
+        <%= link_to project_tasks_path(current_project) do %>
+          <i class="fa-solid fa-tasks sidebar-link-icon"></i> All Tasks
+        <% end %>
+      </div>
+    </span>
+  </h4>
+  <% if @tasks.any? %>
+    <ul class="list-group tasks">
+      <% @tasks.first(TasksHelper::TASKS_LIMIT).each do |task| %>
+        <li class="d-flex flex-column list-group-item">
+          <%= link_to project_board_list_card_path(current_project, task.board, task.list, task), class: "list-group-item-action text-truncate" do %>
+            <%= task.name %>
+          <% end %>
+          <span class="small text-muted"><%= task.board.name %></span>
+          <%= due_date_badge(task) %>
+        </li>
+      <% end %>
+    </ul>
+
+    <p class="small mt-2 mb-0 text-center">&nbsp;
+      <% if overflow_tasks_count(@tasks) > 0 %>
+        + <%= overflow_tasks_count(@tasks) %> more
+      <% end %>
+    </p>
+  <% else %>
+    <div class="mb-3">
+      <%= render 'shared/empty_state',
+        name: 'task',
+        docs_link: 'https://dradis.com/support/guides/projects/methodologies.html#task',
+        text: "Use this space to stay on top of tasks once they're assigned."
+      %>
+    </div>
+  <% end %>
+</section>
