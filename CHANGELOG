@@ -1,5 +1,6 @@
 [v#.#.#] ([month] [YYYY])
   - Kit Import: Use file name sequencing when a template file with the same name exists
+  - Node merging: Update associated evidence, notes and child nodes updated_at column on node merge
   - Upgraded gems:
     - puma, rexml
   - Bugs fixes:

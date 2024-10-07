@@ -1,4 +1,4 @@
-<% cache ['issues-table', @all_columns, issues.map(&:id), @issues.map(&:updated_at).map(&:to_i).sort.last, @tags] do %>
+<% cache ['issues-table', @all_columns, @issues.map(&:affected_ids), issues.map(&:id), @issues.map(&:updated_at).map(&:to_i).sort.last, @tags] do %>
   <% table_attributes = {
     behavior: 'dradis-datatable',
     'default-columns': @default_columns.to_json,
@@ -21,7 +21,7 @@
     </thead>
     <tbody>
       <% issues.each do |issue| %>
-        <% cache [issue, @all_columns, issue.try(:affected_count), issue.try(:state), 'issues-table', @tags] do %>
+        <% cache [issue, @all_columns, issue.try(:affected_count), issue.affected_ids, issue.try(:state), 'issues-table', @tags] do %>
           <tr id="issue-<%= issue.id %>" data-tag-url="<%= project_issue_path(current_project, issue) %>">
             <td class="select-checkbox" data-behavior="select-checkbox"></td>
             <% @all_columns.each do |column| %>
