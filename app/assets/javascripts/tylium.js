@@ -19,6 +19,7 @@
 
 //= require shared/auto_save/local
 //= require shared/charts
+//= require shared/combobox
 //= require shared/comments
 //= require shared/console_updater
 //= require shared/editor_toolbar

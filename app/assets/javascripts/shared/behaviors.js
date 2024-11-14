@@ -135,6 +135,13 @@
       }, 1000);
     });
 
+    // Initialize ComboBox
+    $(parentElement)
+      .find('select')
+      .each(function () {
+        new ComboBox($(this));
+      });
+
     window.initBehaviors = initBehaviors;
   }
 

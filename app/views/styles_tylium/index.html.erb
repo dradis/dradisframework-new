@@ -95,6 +95,167 @@
     </div>
 
     <div class="content-container">
+      <div class="scroll-offset" id="combobox"></div>
+      <div class="style-header">
+        <h4 class="header-underline">Combobox</h4>
+        <a class="reveal-code" data-bs-toggle="collapse" href="#combobox-code"><i class="fa-solid fa-code"></i><label class="visually-hidden">Toggle code</label></a>
+      </div>
+      <div class="style-example">
+        <div class="mb-3">
+          <label class="form-label">Basic Example</label>
+          <select class="form-select" data-combobox-config="no-filter">
+            <option value="a">Awesome Option</option>
+            <option value="b">Another Option</option>
+            <option value="c">🚀 Emojis also work!</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Filter Example</label>
+          <select class="form-select">
+            <option value="a">Awesome Option</option>
+            <option value="b" selected>Pre-selected Option</option>
+            <option value="c">Another Option</option>
+            <option value="d">🚀 Emojis also work!</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">User-defined Options Example</label>
+          <select class="form-select" data-combobox-config="add-options">
+            <option>Prompt Option</option>
+            <option value="1">Filterable option</option>
+            <option value="2">Search for me</option>
+            <option value="3">🚀 Emojis also work!</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Grouped Options Example</label>
+          <select class="form-select" data-combobox-config="add-options">
+            <option>Prompt Option</option>
+            <optgroup label="Group 123">
+              <option value="1">Grouped option</option>
+              <option value="2">Another one</option>
+              <option value="3" disabled>Disabled option</option>
+            </optgroup>
+            <optgroup label="Group ABC">
+              <option value="4">In another group</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Multi-select & User-defined Option Example</label>
+          <select class="form-select" data-combobox-config="add-options" multiple>
+            <option value="1">Filterable option</option>
+            <option value="2">Search for me</option>
+            <option value="3" disabled>Disabled option</option>
+            <option value="4">🚀 Emojis also work!</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label">Option-colors and Option-icons Example</label>
+          <select class="form-select">
+            <option value="a">Plain option (no color and no icon)</option>
+            <option value="b" data-combobox-option-color="#de0a26">Colored option without icon</option>
+            <option value="c" data-combobox-option-icon="fa-solid fa-rocket">Option with icon (no color added)</option>
+            <option value="d" data-combobox-option-icon="fa-regular fa-hand-peace" data-combobox-option-color="#964adb">Colored option with icon</option>
+            <option value="e" data-combobox-option-icon="fa-solid fa-user-astronaut" data-combobox-option-color="#27A599" data-combobox-option-icon-color="#fa824c">Colored option with different color icon</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="style-code-wrapper collapse" id="combobox-code">
+        <pre class="style-code">
+<code><span class="et">&lt;div</span><span class="an"> class=</span><span class="av">"mb-3"</span><span class="et">></span>
+  <span class="et">&lt;label</span><span class="an"> class=</span><span class="av">"form-label"</span><span class="et">></span>Basic Example<span class="et">&lt;/label></span>
+  <span class="et">&lt;select</span><span class="an"> class=</span><span class="av">"form-select"</span><span class="an"> data-combobox-config=</span><span class="av">"no-filter"</span><span class="et">></span>
+    <span class="et">&lt;option</span><span class="an"> value=</span><span class="av">"a"</span><span class="et">></span>Awesome Option<span class="et">&lt;/option></span>
+    <span class="et">&lt;option</span><span class="an"> value=</span><span class="av">"b"</span><span class="et">></span>Another Option<span class="et">&lt;/option></span>
+    <span class="et">&lt;option</span><span class="an"> value=</span><span class="av">"c"</span><span class="et">></span>🚀 Emojis also work!<span class="et">&lt;/option></span>
+  <span class="et">&lt;/select></span>
+<span class="et">&lt;/div></span>
+
+<span class="et">&lt;div</span><span class="an"> class=</span><span class="av">"mb-3"</span><span class="et">></span>
+  <span class="et">&lt;label</span><span class="an"> class=</span><span class="av">"form-label"</span><span class="et">></span>Filter Example<span class="et">&lt;/label></span>
+  <span class="et">&lt;select</span><span class="an"> class=</span><span class="av">"form-select"</span><span class="et">></span>
+    <span class="et">&lt;option</span><span class="an"> value=</span><span class="av">"a"</span><span class="et">></span>Awesome Option<span class="et">&lt;/option></span>
+    <span class="et">&lt;option</span><span class="an"> value=</span><span class="av">"b"</span><span class="an"> selected</span><span class="et">></span>Pre-selected Option<span class="et">&lt;/option></span>
+    <span class="et">&lt;option</span><span class="an"> value=</span><span class="av">"c"</span><span class="et">></span>Another Option<span class="et">&lt;/option></span>
+    <span class="et">&lt;option</span><span class="an"> value=</span><span class="av">"d"</span><span class="et">></span>🚀 Emojis also work!<span class="et">&lt;/option></span>
+  <span class="et">&lt;/select></span>
+<span class="et">&lt;/div></span>
+
+<span class="et">&lt;div</span><span class="an"> class=</span><span class="av">"mb-3"</span><span class="et">></span>
+  <span class="et">&lt;label</span><span class="an"> class=</span><span class="av">"form-label"</span><span class="et">></span>User-defined Options Example<span class="et">&lt;/label></span>
+  <span class="et">&lt;select</span><span class="an"> class=</span><span class="av">"form-select"</span><span class="an"> data-combobox-config=</span><span class="av">"add-options"</span><span class="et">></span>
+    <span class="et">&lt;option</span><span class="et">></span>Prompt Option<span class="et">&lt;/option></span>
+    <span class="et">&lt;option</span><span class="an"> value=</span><span class="av">"1"</span><span class="et">></span>Filterable option<span class="et">&lt;/option></span>
+    <span class="et">&lt;option</span><span class="an"> value=</span><span class="av">"2"</span><span class="et">></span>Search for me<span class="et">&lt;/option></span>
+    <span class="et">&lt;option</span><span class="an"> value=</span><span class="av">"3"</span><span class="et">></span>🚀 Emojis also work!<span class="et">&lt;/option></span>
+  <span class="et">&lt;/select></span>
+<span class="et">&lt;/div></span>
+
+<span class="et">&lt;div</span><span class="an"> class=</span><span class="av">"mb-3"</span><span class="et">></span>
+  <span class="et">&lt;label</span><span class="an"> class=</span><span class="av">"form-label"</span><span class="et">></span>Grouped Options Example<span class="et">&lt;/label></span>
+  <span class="et">&lt;select</span><span class="an"> class=</span><span class="av">"form-select"</span><span class="an"> data-combobox-config=</span><span class="av">"add-options"</span><span class="et">></span>
+    <span class="et">&lt;option</span><span class="et">></span>Prompt Option<span class="et">&lt;/option></span>
+    <span class="et">&lt;optgroup</span><span class="an"> label=</span><span class="av">"Group 123"</span><span class="et">></span>
+      <span class="et">&lt;option</span><span class="an"> value=</span><span class="av">"1"</span><span class="et">></span>Grouped option<span class="et">&lt;/option></span>
+      <span class="et">&lt;option</span><span class="an"> value=</span><span class="av">"2"</span><span class="et">></span>Another one<span class="et">&lt;/option></span>
+      <span class="et">&lt;option</span><span class="an"> value=</span><span class="av">"3"</span><span class="an"> disabled</span><span class="et">></span>Disabled option<span class="et">&lt;/option></span>
+    <span class="et">&lt;/optgroup></span>
+    <span class="et">&lt;optgroup</span><span class="an"> label=</span><span class="av">"Group ABC"</span><span class="et">></span>
+      <span class="et">&lt;option</span><span class="an"> value=</span><span class="av">"4"</span><span class="et">></span>In another group<span class="et">&lt;/option></span>
+    <span class="et">&lt;/optgroup></span>
+  <span class="et">&lt;/select></span>
+<span class="et">&lt;/div></span>
+
+<span class="et">&lt;div</span><span class="an"> class=</span><span class="av">"mb-3"</span><span class="et">></span>
+  <span class="et">&lt;label</span><span class="an"> class=</span><span class="av">"form-label"</span><span class="et">></span>Multi-select &amp; User-defined Option Example<span class="et">&lt;/label></span>
+  <span class="et">&lt;select</span><span class="an"> class=</span><span class="av">"form-select"</span><span class="an"> data-combobox-config=</span><span class="av">"add-options"</span><span class="an"> multiple</span><span class="et">></span>
+    <span class="et">&lt;option</span><span class="an"> value=</span><span class="av">"1"</span><span class="et">></span>Filterable option<span class="et">&lt;/option></span>
+    <span class="et">&lt;option</span><span class="an"> value=</span><span class="av">"2"</span><span class="et">></span>Search for me<span class="et">&lt;/option></span>
+    <span class="et">&lt;option</span><span class="an"> value=</span><span class="av">"3"</span><span class="an"> disabled</span><span class="et">></span>Disabled option<span class="et">&lt;/option></span>
+    <span class="et">&lt;option</span><span class="an"> value=</span><span class="av">"4"</span><span class="et">></span>🚀 Emojis also work!<span class="et">&lt;/option></span>
+  <span class="et">&lt;/select></span>
+<span class="et">&lt;/div></span>
+
+<span class="et">&lt;div</span><span class="et">></span>
+  <span class="et">&lt;label</span><span class="an"> class=</span><span class="av">"form-label"</span><span class="et">></span>Option-colors and Option-icons Example<span class="et">&lt;/label></span>
+  <span class="et">&lt;select</span><span class="an"> class=</span><span class="av">"form-select"</span><span class="et">></span>
+    <span class="et">&lt;option</span><span class="an"> value=</span><span class="av">"a"</span><span class="et">></span>Plain option (no color and no icon)<span class="et">&lt;/option></span>
+    <span class="et">&lt;option</span><span class="an">
+      value=</span><span class="av">"b"</span><span class="an">
+      data-combobox-option-color=</span><span class="av">"#de0a26"</span><span class="et">
+    ></span>
+      Colored option without icon
+    <span class="et">&lt;/option></span>
+    <span class="et">&lt;option</span><span class="an">
+      value=</span><span class="av">"c"</span><span class="an">
+      data-combobox-option-icon=</span><span class="av">"fa-solid fa-rocket"</span><span class="et">
+    ></span>
+      Option with icon (no color added)
+    <span class="et">&lt;/option></span>
+    <span class="et">&lt;option</span><span class="an">
+      value=</span><span class="av">"d"</span><span class="an">
+      data-combobox-option-icon=</span><span class="av">"fa-regular fa-hand-peace"</span><span class="an">
+      data-combobox-option-color=</span><span class="av">"#964adb"</span><span class="et">
+    ></span>
+      Colored option with icon
+    <span class="et">&lt;/option></span>
+    <span class="et">&lt;option</span><span class="an">
+      value=</span><span class="av">"e"</span><span class="an">
+      data-combobox-option-icon=</span><span class="av">"fa-solid fa-user-astronaut"</span><span class="an">
+      data-combobox-option-color=</span><span class="av">"#27A599"</span><span class="an">
+      data-combobox-option-icon-color=</span><span class="av">"#fa824c"</span><span class="et">
+    ></span>
+      Colored option with different color icon
+    <span class="et">&lt;/option></span>
+  <span class="et">&lt;/select></span>
+<span class="et">&lt;/div></span></code>
+        </pre>
+      </div>
+    </div>
+
+    <div class="content-container">
       <div class="scroll-offset" id="dots"></div>
       <div class="style-header">
         <h4 class="header-underline">Dots Menu</h4>
@@ -483,6 +644,7 @@
         <nav class="d-flex flex-column" data-behavior="smooth-scroll-nav">
           <a href="#container" class="nav-link">Content Container</a>
           <a href="#tabs" class="nav-link">Content Container with Tabs</a>
+          <a href="#combobox" class="nav-link">Combobox</a>
           <a href="#dots" class="nav-link">Dots Menu</a>
           <a href="#modals" class="nav-link">Modals</a>
           <a href="#toolbar" class="nav-link">Rich Toolbar</a>

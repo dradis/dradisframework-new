@@ -32,13 +32,14 @@ $linkColorHover: darken($linkColor, 15%);
 
 // Background, Border, Fill Colors
 $primaryBgColor: $white;
-$secondaryBgColor: #f8f8f8;
 $activeFillColor: #eceeef;
 $borderColor: #ddd;
 $checkboxFill: #0d6efd;
-$focusShadow: 0 0 0 0.2rem unquote(#{$primaryColor}80) !important;
+$disabledInputBg: #e9ecef;
 $dropdownLinkBackgroundHover: #f8f9fa;
+$focusShadow: 0 0 0 0.2rem unquote(#{$primaryColor}80) !important;
 $navbarBackground: $primaryBgColor;
+$secondaryBgColor: #f8f8f8;
 $sidebarBackground: darken($darkColor, 5%);
 $sidebarActiveColor: darken($darkColor, 1.75%);
 

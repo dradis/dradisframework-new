@@ -1,0 +1,138 @@
+@mixin combobox-option {
+  color: $defaultText;
+  cursor: pointer;
+  display: block;
+  font-size: 0.9rem;
+  padding: 0.25rem 1rem;
+  pointer-events: auto;
+
+  &:not(.disabled) {
+    &.selected,
+    &:hover,
+    &:focus-visible {
+      color: $white !important;
+
+      i {
+        color: $white !important;
+      }
+    }
+
+    &.selected {
+      background-color: $primaryColor;
+    }
+
+    &:not(.selected) {
+      &:hover,
+      &:focus-visible {
+        background-color: darken($primaryColor, 6%);
+      }
+    }
+  }
+}
+
+.combobox-container {
+  position: relative;
+
+  .disabled {
+    background-color: $disabledInputBg;
+    pointer-events: none;
+
+    .unselect-multi-option {
+      pointer-events: none;
+    }
+  }
+}
+
+.combobox {
+  @extend .form-control, .form-select;
+
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 2.25rem;
+
+  &.multiple {
+    --spacing: 0.25rem;
+    gap: 0.5rem;
+    padding: var(--spacing) 2.25rem var(--spacing) var(--spacing);
+
+    & + .combobox-menu {
+      .combobox-option {
+        &::after {
+          content: '\f00d';
+          display: none;
+          font-family: var(--fa-style-family, 'Font Awesome 6 Free');
+          font-weight: 600;
+          font-size: 85%;
+          margin-left: auto;
+        }
+
+        &.selected {
+          &:hover,
+          &:focus-visible {
+            &::after {
+              display: inline;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.combobox-menu {
+  background-color: $white;
+  border: 1px solid $borderColor;
+  border-radius: $border-radius;
+  box-shadow: 0 20px 30px 0 rgba(33, 55, 74, 0.2);
+  display: none;
+  font-size: 0.9rem;
+  position: absolute;
+  margin: 0;
+  max-height: calc(100vh - 39.5rem);
+  overflow-y: auto;
+  padding: 0.25rem 0;
+  z-index: 4;
+  width: 100%;
+}
+
+.combobox-multi-option {
+  align-items: center;
+  border: 1px solid $primaryColor;
+  border-radius: $border-radius;
+  display: flex;
+  font-size: 0.8rem;
+  gap: 0.35rem;
+  padding: 0.15rem 0.5rem;
+  pointer-events: none;
+  width: max-content;
+
+  .unselect-multi-option {
+    cursor: pointer;
+    pointer-events: auto;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: $primaryColor;
+    }
+  }
+}
+
+.combobox-optgroup {
+  color: $mutedText;
+  display: block;
+  font-size: 0.8rem;
+  pointer-events: none;
+
+  .combobox-option {
+    @include combobox-option;
+  }
+
+  &:not(:has(.combobox-option:not(.d-none))) {
+    display: none;
+  }
+}
+
+.combobox-option {
+  @include combobox-option;
+}

@@ -81,7 +81,8 @@ code {
   border-top: 1px solid $borderColor;
 }
 
-.form-control {
+.form-control,
+.form-select {
   font-size: inherit;
 
   &:focus {
