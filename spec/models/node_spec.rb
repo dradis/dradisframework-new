@@ -27,11 +27,11 @@ describe Node do
     end
 
     it 'deletes all associated attachments' do
-      expect(File.exists?(@attachment.fullpath)).to be false
+      expect(File.exist?(@attachment.fullpath)).to be false
     end
 
     it 'deletes its corresponding attachment subfolder' do
-      expect(File.exists?(Attachment.pwd.join(node.id.to_s))).to be false
+      expect(File.exist?(Attachment.pwd.join(node.id.to_s))).to be false
     end
 
     it "doesn't delete or nullify any associated Activities" do
@@ -148,8 +148,8 @@ describe Node do
       end
 
       it 'ignores same value for hash properties (same key type)' do
-        node.set_property(:test_property, {port: 80, protocol: 'tcp'})
-        node.set_property(:test_property, {port: 80, protocol: 'tcp'})
+        node.set_property(:test_property, { port: 80, protocol: 'tcp' })
+        node.set_property(:test_property, { port: 80, protocol: 'tcp' })
 
         # Because we're getting a WithIndifferentAccess hash, can't compare
         # directly.
@@ -163,8 +163,8 @@ describe Node do
         # strings for DB serialisation. If we start sending Symbols, they
         # become Strings and by the time we're setting the second property
         # we'd be comparing strings with strings.
-        node.set_property(:test_property, {'port' => 80, 'protocol' => 'tcp'})
-        node.set_property(:test_property, {port: 80, protocol: 'tcp'})
+        node.set_property(:test_property, { 'port' => 80, 'protocol' => 'tcp' })
+        node.set_property(:test_property, { port: 80, protocol: 'tcp' })
 
         # Because we're getting a WithIndifferentAccess hash, can't compare
         # directly.
@@ -198,7 +198,7 @@ describe Node do
 
     it 'raises if you try to set :services or services_extras' do
       expect do
-        node.set_property(:services, [{port: '22', protocol: 'tcp'}])
+        node.set_property(:services, [{ port: '22', protocol: 'tcp' }])
       end.to raise_error(ArgumentError, /set_service/)
 
       expect do

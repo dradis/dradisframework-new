@@ -8,7 +8,7 @@ class NamingService
     # Remove newlines and duplicate spaces
     original_filename = original_filename.squish
 
-    return original_filename unless File.exists?(pathname.join(original_filename))
+    return original_filename unless File.exist?(pathname.join(original_filename))
 
     extension = File.extname(original_filename)
     basename = File.basename(original_filename, extension)
@@ -28,7 +28,7 @@ class NamingService
   def self.name_project(name)
     return name unless Project.exists?(name: name)
 
-    projects = Project.where("name LIKE ?", "#{name}_copy-%")
+    projects = Project.where('name LIKE ?', "#{name}_copy-%")
     project_names = projects.map(&:name)
 
     new_name(
@@ -40,7 +40,7 @@ class NamingService
   private
 
   def self.new_name(name:, sequence:, suffix: nil)
-    "%s_copy-%02i%s" % [name, sequence, suffix]
+    '%s_copy-%02i%s' % [name, sequence, suffix]
   end
 
   def self.next_sequence(matching_names: [], suffix: nil)

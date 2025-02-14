@@ -18,7 +18,7 @@ class DradisTasks < Thor
       init_all = false
       Dir['config/*.template'].each do |template|
         config = File.join('config', File.basename(template, '.template'))
-        if !(File.exists?(config))
+        if !(File.exist?(config))
           if (init_all)
             puts "Initilizing #{config}..."
             FileUtils.cp(template, config)
@@ -45,9 +45,9 @@ class DradisTasks < Thor
     desc 'kit', 'Import files and projects from a specified Kit configuration file'
     method_option :file, required: true, type: :string, desc: 'full path to the Kit file to use.'
     def kit
-      puts "** Importing kit..."
+      puts '** Importing kit...'
       KitImportJob.perform_now(options[:file], logger: default_logger)
-      puts "[  DONE  ]"
+      puts '[  DONE  ]'
     end
 
     desc 'welcome', 'adds initial content to the repo for demonstration purposes'

@@ -1,6 +1,7 @@
 [v#.#.#] ([month] [YYYY])
   - Hera: Add new layout with redesigned navigation
   - QA: Add View History link when viewing Issues/Content blocks
+    - Ruby: Upgrade ruby version to 3.2.0
   - Upgraded gems:
     - net-imap, nokogiri, paper_trail, rack, rails, rails-html-sanitizer, rexml, rspec-rails
   - Bugs fixes:

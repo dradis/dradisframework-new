@@ -18,7 +18,7 @@ describe Attachment do
   end
 
   it 'should copy the source file into the attachments folder' do
-    expect(File.exists?(Attachment.pwd + "#{node.id}/#{attachment.filename}")).to be true
+    expect(File.exist?(Attachment.pwd + "#{node.id}/#{attachment.filename}")).to be true
   end
 
   it 'should be able to find attachments by filename'

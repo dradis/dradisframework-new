@@ -31,12 +31,12 @@ RSpec.describe KitImportJob do
       expect(ProjectTemplate.find_template('dradis-template-welcome')).to_not be_nil
 
       # report template files
-      expect(File.exists?(Rails.root.join('tmp', 'rspec', 'reports', 'word', 'dradis_welcome_template.v0.5.docm'))).to eq true
-      expect(File.exists?(Rails.root.join('tmp', 'rspec', 'reports', 'excel', 'dradis_template-excel-simple.v1.3.xlsx'))).to eq true
-      expect(File.exists?(Rails.root.join('tmp', 'rspec', 'reports', 'html_export', 'html_welcome_report.html.erb'))).to eq true
+      expect(File.exist?(Rails.root.join('tmp', 'rspec', 'reports', 'word', 'dradis_welcome_template.v0.5.docm'))).to eq true
+      expect(File.exist?(Rails.root.join('tmp', 'rspec', 'reports', 'excel', 'dradis_template-excel-simple.v1.3.xlsx'))).to eq true
+      expect(File.exist?(Rails.root.join('tmp', 'rspec', 'reports', 'html_export', 'html_welcome_report.html.erb'))).to eq true
 
       # Check that no ruby file was copied
-      expect(File.exists?(Rails.root.join('tmp', 'rspec', 'reports', 'word', 'dradis_welcome_template.v0.5.rb'))).to eq false
+      expect(File.exist?(Rails.root.join('tmp', 'rspec', 'reports', 'word', 'dradis_welcome_template.v0.5.rb'))).to eq false
     end
 
     it 'can import kit without methodologies folder' do

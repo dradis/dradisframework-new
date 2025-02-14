@@ -11,22 +11,21 @@ describe FileBackedModel do
   end
 
   subject { ::BasicFileBackedModel.new }
-  let(:pwd){ BasicFileBackedModel.pwd }
-  let(:rspec_file){ pwd.join('rspec.txt')}
-  it_behaves_like "ActiveModel"
+  let(:pwd) { BasicFileBackedModel.pwd }
+  let(:rspec_file) { pwd.join('rspec.txt') }
+  it_behaves_like 'ActiveModel'
 
   after(:all) do
     FileUtils.rm_rf('tmp/templates/')
     ::Configuration::where(name: 'admin:paths:rspec').limit(1).destroy_all
   end
 
-
   # ------------------------------------------------------- Class configuration
   describe '.extension' do
-    it "defaults to a .txt extension" do
+    it 'defaults to a .txt extension' do
       expect(BasicFileBackedModel.extension).to eq('.txt')
     end
-    it "allows including classes to define their own" do
+    it 'allows including classes to define their own' do
       class ExtensionFBM
         include FileBackedModel
         set_extension :xml
@@ -36,12 +35,11 @@ describe FileBackedModel do
     end
   end
 
-
   # ----------------------------------------------------------- File operations
   describe '.from_file' do
-    it "loads an instance based on the file on disk" do
-      FileUtils.mkdir_p(pwd) unless File.exists?(pwd)
-      File.open(rspec_file, 'w'){|f| f << 'bar'}
+    it 'loads an instance based on the file on disk' do
+      FileUtils.mkdir_p(pwd) unless File.exist?(pwd)
+      File.open(rspec_file, 'w') { |f| f << 'bar' }
 
       expect(subject.class).to respond_to(:from_file)
       # expect(subject.class.from_file).to raise_error
@@ -61,9 +59,9 @@ describe FileBackedModel do
       expect(instance.destroy).to be true
     end
 
-    it "deletes the file from disk if this is a file-backed model" do
-      FileUtils.mkdir_p(pwd) unless File.exists?(pwd)
-      File.open(rspec_file, 'w'){|f| f << 'foobar' }
+    it 'deletes the file from disk if this is a file-backed model' do
+      FileUtils.mkdir_p(pwd) unless File.exist?(pwd)
+      File.open(rspec_file, 'w') { |f| f << 'foobar' }
 
       expect(File.exist?(rspec_file)).to be true
       instance = subject.class.from_file(rspec_file)
@@ -73,7 +71,7 @@ describe FileBackedModel do
   end
 
   describe '#save' do
-    pending "generates a filename using the #name if provided" do
+    pending 'generates a filename using the #name if provided' do
       subject.name = 'Singing in the rain'
       should be true
 
@@ -89,7 +87,7 @@ describe FileBackedModel do
     # it "auto-generates a filename if no #name was provided" do
     # end
 
-    it "overwrites the contents of the file on disk" do
+    it 'overwrites the contents of the file on disk' do
       subject.name = 'rspec name'
       subject.content = 'barfoo'
       expect(subject.save).to be true
@@ -100,14 +98,13 @@ describe FileBackedModel do
     end
   end
 
-
   # ------------------------------------------------------------------- Finders
   describe '.all' do
-    it "returns a new instance for each file in the .pwd" do
-      FileUtils.mkdir_p(pwd) unless File.exists?(pwd)
+    it 'returns a new instance for each file in the .pwd' do
+      FileUtils.mkdir_p(pwd) unless File.exist?(pwd)
 
       (1..3).each do |i|
-        File.open(pwd.join("#{i}.txt"), 'w'){|f| f << 'foo' }
+        File.open(pwd.join("#{i}.txt"), 'w') { |f| f << 'foo' }
       end
 
       expect(BasicFileBackedModel.all.count).to eq(3)
@@ -122,9 +119,9 @@ describe FileBackedModel do
       end.to raise_exception(FileBackedModel::FileNotFoundException)
     end
 
-    it "loads an instance based on the file name" do
-      FileUtils.mkdir_p(pwd) unless File.exists?(pwd)
-      File.open(rspec_file, 'w'){|f| f << 'bar'}
+    it 'loads an instance based on the file name' do
+      FileUtils.mkdir_p(pwd) unless File.exist?(pwd)
+      File.open(rspec_file, 'w') { |f| f << 'bar' }
 
       expect(subject.class).to respond_to(:find)
 
@@ -138,12 +135,11 @@ describe FileBackedModel do
     end
   end
 
-
   # ---------------------------------------------------------- Instance methods
   describe '#name' do
-    it "responds to #name based on the filename" do
-      FileUtils.mkdir_p(pwd) unless File.exists?(pwd)
-      File.open(rspec_file, 'w'){|f| f << 'bar' }
+    it 'responds to #name based on the filename' do
+      FileUtils.mkdir_p(pwd) unless File.exist?(pwd)
+      File.open(rspec_file, 'w') { |f| f << 'bar' }
 
       bfbm = BasicFileBackedModel.from_file(rspec_file)
       expect(bfbm).to respond_to(:name)

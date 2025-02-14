@@ -35,11 +35,11 @@ describe Methodology do
       mt.save
 
       filename = Methodology.pwd.join('mt_test.xml')
-      expect(File.exists?(filename)).to be true
+      expect(File.exist?(filename)).to be true
       expect(mt).to respond_to('destroy')
       expect(mt).to respond_to('delete')
       mt.destroy
-      expect(File.exists?(filename)).to be false
+      expect(File.exist?(filename)).to be false
     end
 
     it "destroy() works even if the file doesn't exist any more or never existed" do
@@ -69,7 +69,7 @@ describe Methodology do
 
   describe '#save' do
     it "creates the base dir if it doesn't exist when saving" do
-      FileUtils.rm_rf(Methodology.pwd) if File.exists?(Methodology.pwd)
+      FileUtils.rm_rf(Methodology.pwd) if File.exist?(Methodology.pwd)
 
       Timecop.freeze(Time.now)
 
@@ -78,8 +78,8 @@ describe Methodology do
       expect(mt.save).to be true
 
       new_methodology = Methodology.pwd.join("auto_#{Time.now.to_i}.xml")
-      expect(File.exists?(Methodology.pwd)).to be true
-      expect(File.exists?(new_methodology)).to be true
+      expect(File.exist?(Methodology.pwd)).to be true
+      expect(File.exist?(new_methodology)).to be true
       expect(File.read(new_methodology)).to eq(content)
       File.delete(new_methodology)
 
@@ -93,7 +93,7 @@ describe Methodology do
       )
       expect(mt.save).to be true
       filename = Methodology.pwd.join('mt_test.xml')
-      expect(File.exists?(filename)).to be true
+      expect(File.exist?(filename)).to be true
       expect(File.read(filename)).to eq('<foo version="2">bar</foo>')
       File.delete(filename)
     end

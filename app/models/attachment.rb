@@ -63,7 +63,7 @@ class Attachment < File
   require 'fileutils'
   # Set the path to the attachment storage
   AttachmentPwd = Rails.env.test? ? Rails.root.join('tmp', 'attachments') : Rails.root.join('attachments')
-  FileUtils.mkdir_p(AttachmentPwd) unless File.exists?(AttachmentPwd)
+  FileUtils.mkdir_p(AttachmentPwd) unless File.exist?(AttachmentPwd)
 
   SCREENSHOT_REGEX = /\!((https?:\/\/.+)|((\/pro)?\/projects\/(\d+)\/nodes\/(\d+)\/attachments\/(.+?)(\(.*\))?))\!/i
 
@@ -164,7 +164,7 @@ class Attachment < File
     @node_id  = options[:node_id]
     @tempfile = args[0] || options[:tempfile]
 
-    if File.exists?(fullpath) && File.file?(fullpath)
+    if File.exist?(fullpath) && File.file?(fullpath)
       super(fullpath, 'rb+')
       @initialfile = fullpath.clone
     elsif @tempfile && File.basename(@tempfile) != ''
@@ -177,13 +177,13 @@ class Attachment < File
 
   # Closes the current file handle, this writes the content to the file system
   def save
-    if File.exists?(fullpath) && File.file?(fullpath)
+    if File.exist?(fullpath) && File.file?(fullpath)
       self.close
     else
       raise "Node with ID=#{@node_id} does not exist" unless @node_id && Node.exists?(@node_id)
 
       @filename ||= File.basename(@tempfile)
-      FileUtils.mkdir(File.dirname(fullpath)) unless File.exists?(File.dirname(fullpath))
+      FileUtils.mkdir(File.dirname(fullpath)) unless File.exist?(File.dirname(fullpath))
       self.close
       FileUtils.cp(self.path, fullpath) if @intialfile != fullpath
       if (@initialfile && @initialfile != fullpath)
@@ -213,7 +213,7 @@ class Attachment < File
     new_file_path = fullpath(node.id, name)
 
     dir_name = File.dirname new_file_path
-    FileUtils.mkdir dir_name unless File.exists? dir_name
+    FileUtils.mkdir dir_name unless File.exist? dir_name
 
     FileUtils.cp fullpath, new_file_path
 
