@@ -34,7 +34,7 @@ describe ConflictResolver do
     it 'save the last conflicting update' do
       @dummy_instance.testing_method1(@issue, Time.now.to_i)
 
-      expect(@dummy_instance.session[:update_conflicts_since]).to eq(Time.at(@original_updated_at.to_i + 1).utc.to_s(:db))
+      expect(@dummy_instance.session[:update_conflicts_since]).to eq(Time.at(@original_updated_at.to_i + 1).utc.to_fs(:db))
     end
   end
 

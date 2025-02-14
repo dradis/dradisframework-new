@@ -3,7 +3,7 @@ class ListsController < AuthenticatedController
   include ProjectScoped
 
   before_action :set_current_board
-  before_action :set_list, only: [:show, :edit, :update, :destroy, :move]
+  before_action :set_list, only: [:edit, :update, :destroy, :move]
 
   # Not at top because we need board set first
   include ValidateMove

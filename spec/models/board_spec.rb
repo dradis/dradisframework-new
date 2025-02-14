@@ -9,6 +9,13 @@ describe Board do
 
   it { should validate_length_of(:name).is_at_most(DB_MAX_STRING_LENGTH) }
 
+  describe 'acts as linked list' do
+    let(:model) { Board }
+    let(:list_item) { 'list' }
+
+    it_behaves_like 'a linked list model'
+  end
+
   describe '#create' do
     before do
       @node = create(:node)

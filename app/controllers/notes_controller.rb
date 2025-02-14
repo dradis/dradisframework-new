@@ -9,7 +9,7 @@ class NotesController < NestedNodeResourceController
   include NodesSidebar
   include NotificationsReader
 
-  before_action :find_or_initialize_note, except: [:index, :multiple_destroy]
+  before_action :find_or_initialize_note
   before_action :initialize_nodes_sidebar, only: [:edit, :new, :show]
   before_action :set_auto_save_key, only: [:new, :create, :edit, :update]
 

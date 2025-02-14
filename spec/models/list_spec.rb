@@ -10,6 +10,13 @@ describe List do
 
   it { should validate_length_of(:name).is_at_most(DB_MAX_STRING_LENGTH) }
 
+  describe 'acts as linked list' do
+    let(:model) { List }
+    let(:list_item) { 'card' }
+
+    it_behaves_like 'a linked list model'
+  end
+
   before do
     @parent = create(:board)
     @list_item = create(:list, board_id: @parent.id)

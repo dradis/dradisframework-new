@@ -26,10 +26,15 @@ module ActsAsLinkedList
     def list_item_name(name)
       names = name.to_s.pluralize
 
-      alias_attribute :items, names.to_sym
-      alias_attribute "first_#{name}", :first_item
-      alias_attribute "last_#{name}", :last_item
-      alias_attribute "ordered_#{names}", :ordered_items
+      # alias_attribute :items, names.to_sym
+      # Rails 7.2 deprecated non-attribute alias_attributes: https://github.com/rails/rails/pull/48972
+      # There may be an update coming for this: https://github.com/rails/rails/pull/49801
+      # But it has not yet been merged. Until then, we must define the association again here:
+      has_many :items, class_name: name.to_s.titleize
+
+      alias_method "first_#{name}".to_sym, :first_item
+      alias_method "last_#{name}".to_sym, :last_item
+      alias_method "ordered_#{names}".to_sym, :ordered_items
     end
 
     # Public: Moves an item to a new position by passing the new previous and
@@ -42,7 +47,6 @@ module ActsAsLinkedList
     # Returns true.
     def move(item, new_position = {})
       item.class.transaction do
-        previous_item = item.send("previous_#{item.class.name.downcase}")
         next_item = item.send("next_#{item.class.name.downcase}")
 
         # Update previous position

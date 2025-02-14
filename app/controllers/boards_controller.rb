@@ -2,7 +2,7 @@ class BoardsController < AuthenticatedController
   include ActivityTracking
   include ProjectScoped
 
-  before_action :set_board, only: [:show, :edit, :update, :destroy]
+  before_action :set_board, only: [:show, :update, :destroy]
   before_action :set_node, only: [:create, :show]
   before_action :redirect_if_node_board, only: :show
 
@@ -37,7 +37,6 @@ class BoardsController < AuthenticatedController
           importer = MethodologyImportService.new(current_project.id)
           importer.import(methodology, board_name: board_params[:name], node: @node)
         end
-
 
         board = Board.last
         track_created(board)
@@ -127,4 +126,3 @@ class BoardsController < AuthenticatedController
       end
   end
 end
-

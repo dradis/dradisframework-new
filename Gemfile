@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 7.0.8.7'
+gem 'rails', '~> 7.2.2.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 6.0'
@@ -56,7 +56,7 @@ gem 'liquid'
 
 gem 'kaminari', '~> 1.2.1'
 
-gem 'paper_trail', '~> 12.2.0'
+gem 'paper_trail', '~> 15.2.0'
 
 # gem 'rails_autolink', '~> 1.1'
 
@@ -98,7 +98,7 @@ gem 'nokogiri', '>= 1.16.5'
 # before 1.0.4, so make sure we're using 1.0.4+:
 # see https://github.com/rails/rails-html-sanitizer/commit/f3ba1a839a
 # and https://github.com/flavorjones/loofah/issues/144
-gem 'rails-html-sanitizer', '~> 1.4.4'
+gem 'rails-html-sanitizer', '~> 1.6.1'
 
 # Textile markup
 gem 'RedCloth', '~> 4.3.4', require: 'redcloth'
@@ -184,8 +184,8 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-
-  gem 'rspec-rails', '~> 4.0.2'
+  # rspec-rails < 6.1.0 does not support rails 7.2
+  gem 'rspec-rails', '~> 6.1.0'
 end
 
 group :test do
@@ -233,11 +233,12 @@ end
 
 # ----------------------------------------------------------------- Calculators
 
-gem 'dradis-calculator_cvss', github: 'dradis/dradis-calculator_cvss'
-gem 'dradis-calculator_dread', github: 'dradis/dradis-calculator_dread'
+gem 'dradis-calculator_cvss', github: 'dradis/dradis-calculator_cvss', branch: 'rails/upgrade-7.2'
+gem 'dradis-calculator_dread', github: 'dradis/dradis-calculator_dread', branch: 'rails/upgrade-7.2'
+
 # ---------------------------------------------------------------------- Export
 gem 'dradis-csv_export', '~> 4.15.0'
-gem 'dradis-html_export', '~> 4.15.0'
+gem 'dradis-html_export', github: 'dradis/dradis-html_export', branch: 'rails/upgrade-7.2'
 
 # ---------------------------------------------------------------------- Import
 gem 'dradis-csv', '~> 4.15.0'

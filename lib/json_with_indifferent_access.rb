@@ -1,4 +1,4 @@
-class JSONWithIndifferentAccess
+class JsonWithIndifferentAccess
   def self.dump(obj)
     JSON.dump(obj)
   end
