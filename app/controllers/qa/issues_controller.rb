@@ -3,6 +3,7 @@ class QA::IssuesController < AuthenticatedController
   include LiquidEnabledResource
   include Mentioned
   include ProjectScoped
+  include Publishable
 
   before_action :set_issues
   before_action :set_issue, only: [:edit, :show, :preview, :update]

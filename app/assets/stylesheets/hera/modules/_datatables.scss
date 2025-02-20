@@ -1,5 +1,7 @@
 div.dataTables_wrapper {
   .dt-button-collection {
+    z-index: 1001;
+
     .dropdown-item,
     .dropdown-item.active {
       background-color: $white;

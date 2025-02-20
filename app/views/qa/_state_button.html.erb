@@ -8,20 +8,13 @@
   </button>
   <div class="dropdown-menu">
     <%= f.collection_radio_buttons(:state, record.class.states, :first, :first) do |b| %>
-      <%= b.label class: 'state' do %>
-        <%= b.radio_button class: 'd-none', data: { behavior: 'state-radio'} %>
+      <%= b.label class: 'state', **label_options_for(b.value) do %>
+        <%= radio_button_for(b) %>
         <i class="fa-solid fa-check fa-fw"></i>
         <div class="state-label">
           <p data-behavior="state-label"><%= b.text.humanize %></p>
-          <% case b.value %>
-          <% when 'draft' %>
-          <span>Still not ready for review or the report.</span>
-          <% when 'ready_for_review' %>
-          <span>All done on this one, ready for QA.</span>
-          <% when 'published' %>
-          <span>Content is final, ready for the report.</span>
-        <% end %>
-      </div>
+          <span><%= button_text_for(b.value) %></span>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>

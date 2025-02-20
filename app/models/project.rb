@@ -44,6 +44,10 @@ class Project
     User.all
   end
 
+  def reviewers
+    User.all
+  end
+
   def assign_owner(user)
   end
 
