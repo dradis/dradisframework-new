@@ -13,8 +13,8 @@
   - Integration enhancements:
     - [integration]:
       - [future tense verb] [integration enhancement]
-      - [integration bug fixes]:
-        - [future tense verb] [integration bug fix]
+     - HTML:
+        - Fix default HTML report template to work with CE
   - Reporting enhancements:
     - [report type]:
       - [future tense verb] [reporting enhancement]
