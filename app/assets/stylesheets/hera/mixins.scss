@@ -1,5 +1,3 @@
-@import 'hera/variables';
-
 @mixin ajax-console {
   background-color: $black;
   border-radius: 5px;
@@ -27,15 +25,5 @@
     &.text-error {
       color: lighten($text-error, 15%) !important;
     }
-  }
-}
-
-@mixin button($color) {
-  border: 0px none;
-  background: $color;
-
-  &:hover,
-  &:not(:disabled):not(.disabled):active {
-    background: darken($color, 10);
   }
 }

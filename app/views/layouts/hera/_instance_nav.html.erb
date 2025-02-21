@@ -17,7 +17,7 @@
     <div class="collapse navbar-collapse justify-content-end dual-nav" id="instance_navbar" data-behavior="navbar-collapse">
       <ul class="navbar-nav navbar-nav-scroll me-auto pb-0">
         <li class="nav-item d-lg-none">
-          <%= render "layouts/hera/navbar/search" %>
+          <%= render "layouts/hera/navbar/projects/search" %>
         </li>
         <% if defined?(Dradis::Pro) %>
           <%= content_tag :li, class: class_names('nav-item', active: controller_path == 'dashboard') do %>
@@ -34,8 +34,8 @@
             <% end %>
           <% end -%>
 
-          <%= render 'shared/navigation/integrations_menu' if current_user.role?(:admin) %>
-          <%= render 'shared/navigation/tools_menu' %>
+          <%= render 'layouts/hera/navbar/integrations_menu' if current_user.role?(:admin) %>
+          <%= render 'layouts/hera/navbar/tools_menu' %>
 
           <% if current_user.role?(:admin) -%>
             <%= content_tag :li, class: class_names('nav-item', active: controller_path == 'admin/mappings') do %>
@@ -71,11 +71,11 @@
               <span>Projects</span>
             <% end %>
           </li>
-          <%= render 'shared/navigation/tools_menu' %>
+          <%= render 'layouts/hera/navbar/tools_menu' %>
         <% end %>
       </ul>
 
-      <%= render 'shared/navigation/utility_nav' %>
+      <%= render 'layouts/hera/navbar/utility_nav' %>
     </div>
   </div>
 </nav>

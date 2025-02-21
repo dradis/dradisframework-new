@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title><%= content_for?(:title) ? yield(:title) : 'Dradis Community Edition' %></title>
+    <title><%= page_title %></title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
@@ -16,10 +16,11 @@
 
     <%= render 'comments/mentionable_users' if @mentionable_users %>
 
-    <%= favicon_link_tag 'favicon.ico',
-        'data-behavior': 'favicon',
-        'data-unread': image_path('favicon-unread.ico'),
-        'data-read': image_path('favicon.ico') %>
+    <%= favicon_link_tag 'favicon.ico', data: { 
+      behavior: 'favicon', 
+      unread: image_path('favicon-unread.ico'), 
+      read: image_path('favicon.ico') 
+    } %>
 
     <%= stylesheet_link_tag 'hera', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'hera', 'data-turbolinks-track' => true %>
@@ -28,98 +29,105 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="<%= controller_name %> <%= action_name %>">
+  <%= 
+    content_tag(
+      :body, 
+      class: class_names(controller_path.gsub('/', '-'), 
+        controller_name, 
+        action_name, 
+        'in-project': in_project?
+      ),
+      data: {
+        env: (Rails.env unless Rails.env.production?),
+      } 
+    ) do %>
 
     <header class="sticky-top">
-      <%= render 'shared/navigation/instance_nav' %>
-      <%= render 'layouts/hera/project_nav' %>
+      <%= render 'layouts/hera/instance_nav' %>
+      <%= render 'layouts/hera/navbar/projects/project_nav' if in_project? %>
     </header>
 
-    <aside>
-      <%= render "layouts/hera/sidebar" %>
-    </aside>
-
     <div class="content-grid">
-      <main class="container-fluid" data-behavior="view-content">
-        <%= content_for?(:breadcrumbs) ? yield(:breadcrumbs) : '' %>
-        <%= render 'shared/noscript' %>
-        <%= render "layouts/hera/project_teaser" unless defined?(Dradis::Pro) %>
-        <%= flash_messages %>
-        <%= content_for?(:content) ? yield(:content) : yield %>
-      </main>
-      <footer>
-        <% if defined?(Dradis::Pro) %>
-          <span>Dradis Professional Edition v<%= Dradis::Pro.version %></span>
-        <% else %>
-          <span>Dradis Community Edition v<%= Dradis::CE.version %></span>
-        <% end %>
-        <span>- <a href="https://dradis.com" target="_blank">dradis.com</a></span>
-      </footer>
+      <aside>
+        <%= render 'layouts/hera/sidebar' if in_project? %>
+      </aside>
+      <div class="view-content" data-behavior="view-content">
+        <main class="container-fluid">
+          <%= content_for?(:breadcrumbs) ? yield(:breadcrumbs) : '' %>
+          <%= render 'layouts/hera/noscript' %>
+          <%= render "layouts/hera/project_teaser" unless defined?(Dradis::Pro) %>
+          <%= flash_messages %>
+          <%= content_for?(:content) ? yield(:content) : yield %>
+        </main>
+        <footer>
+          <% if defined?(Dradis::Pro) %>
+            <span>Dradis Professional Edition v<%= Dradis::Pro.version %></span>
+          <% else %>
+            <span>Dradis Community Edition v<%= Dradis::CE.version %></span>
+          <% end %>
+          <span>- <a href="https://dradis.com" target="_blank">dradis.com</a></span>
+        </footer>
+      </div>
+      <% if content_for?(:sidebar) %>
+        <%= render "layouts/hera/secondary_sidebar" %>
+      <% end %>
     </div>
 
-    <% if content_for?(:sidebar) %>
-      <aside>
-        <%= render "layouts/hera/secondary_sidebar" %>
-      </aside>
-    <% end %>
-
-    <%= render 'activities/poller' %>
+    <%= render 'activities/poller' if in_project? %>
 
     <!-- All modals go here -->
-    <%= render 'layouts/hera/modals' %>
-    <%= render partial: 'nodes/modals/add_node', locals: { type: :branch } %>
+    <% if in_project? %>
+      <%= render 'layouts/hera/modals' %>
+      <%= render partial: 'nodes/modals/add_node', locals: { type: :branch } %>
 
-    <% if content_for?(:board_rename_modal) %>
-      <%= yield(:board_rename_modal) %>
-    <% end %>
-    <% if content_for?(:list_new_modal) %>
-      <%= yield(:list_new_modal) %>
-    <% end %>
-    <% if content_for?(:list_rename_modal) %>
-      <%= yield(:list_rename_modal) %>
-    <% end %>
-
-    <% if content_for?(:bulk_update_modal) %>
-      <%= yield(:bulk_update_modal) %>
-    <% end %>
-
-    <% if content_for?(:diff_modal) %>
-      <%= yield(:diff_modal) %>
-    <% end %>
-
-    <% if controller_name == 'boards' || controller_name == 'projects' %>
-      <%= render 'boards/modals/new_board_form' unless request.xhr? %>
-    <% end %>
-
-    <% if @node && @node.label != 'Methodologies'%>
-      <% if @board %>
-        <%= render partial: 'boards/modals/board_rename_form', locals: { board: @board } %>
+      <% if content_for?(:board_rename_modal) %>
+        <%= yield(:board_rename_modal) %>
       <% end %>
-      <%= render partial: 'boards/modals/new_board_form' %>
-      <%= render partial: 'nodes/modals/add_node', locals: { type: :child } %>
-      <%= render partial: 'nodes/modals/delete' %>
-      <%= render partial: 'nodes/modals/merge' %>
-      <%= render partial: 'nodes/modals/move' %>
-      <%= render partial: 'nodes/modals/rename' %>
-    <% end %>
+      <% if content_for?(:list_new_modal) %>
+        <%= yield(:list_new_modal) %>
+      <% end %>
+      <% if content_for?(:list_rename_modal) %>
+        <%= yield(:list_rename_modal) %>
+      <% end %>
 
-    <% if controller_path == 'evidence' %>
-      <%= render partial: 'evidence/modals/move' %>
-    <% end %>
+      <% if content_for?(:bulk_update_modal) %>
+        <%= yield(:bulk_update_modal) %>
+      <% end %>
 
-    <% if controller_name == 'notes'%>
-      <%= render partial: 'notes/modals/move' %>
-    <% end %>
+      <% if content_for?(:diff_modal) %>
+        <%= yield(:diff_modal) %>
+      <% end %>
 
-    <% if controller_name == 'styles_hera' %>
-      <%= render partial: 'styles_hera/modal' %>
-    <% end %>
+      <% if controller_name == 'boards' || controller_name == 'projects' %>
+        <%= render 'boards/modals/new_board_form' unless request.xhr? %>
+      <% end %>
 
-    <% if %w[tags issues].include?(controller_name) %>
-      <%= render partial: 'tags/modals/form' %>
-    <% end %>
+      <% if @node && @node.label != 'Methodologies'%>
+        <%= render partial: 'nodes/modals/add_node', locals: { type: :child } %>
+        <%= render partial: 'nodes/modals/delete' %>
+        <%= render partial: 'nodes/modals/merge' %>
+        <%= render partial: 'nodes/modals/move' %>
+        <%= render partial: 'nodes/modals/rename' %>
+      <% end %>
 
-    <%= render 'console/console' %>
+      <% if controller_path == 'evidence' %>
+        <%= render partial: 'evidence/modals/move' %>
+      <% end %>
+
+      <% if controller_name == 'notes'%>
+        <%= render partial: 'notes/modals/move' %>
+      <% end %>
+
+      <% if controller_name == 'styles_hera' %>
+        <%= render partial: 'styles_hera/modal' %>
+      <% end %>
+
+      <% if %w[tags issues].include?(controller_name) %>
+        <%= render partial: 'tags/modals/form' %>
+      <% end %>
+
+      <%= render 'console/console' %>
+    <% end %>
     <!-- End of modals -->
-  </body>
+  <% end %>
 </html>

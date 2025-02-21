@@ -16,34 +16,32 @@
 
 //= require cable
 
-//= require shared/auto_save/local
-//= require shared/charts
-//= require shared/comments
-//= require shared/console_updater
-//= require shared/differ
-//= require shared/editor_toolbar
-//= require shared/quote_selector
-//= require shared/mentions
-//= require shared/notifications
-//= require shared/rtp_validation
-//= require shared/state_button
-//= require shared/subscriptions
+//= require hera/modules/auto_save/local
+//= require hera/modules/charts
+//= require hera/modules/comments
+//= require hera/modules/console_updater
+//= require hera/modules/differ
+//= require hera/modules/editor_toolbar
+//= require hera/modules/quote_selector
+//= require hera/modules/mentions
+//= require hera/modules/notifications
+//= require hera/modules/rtp_validation
+//= require hera/modules/state_button
+//= require hera/modules/subscriptions
 
-//= require shared/datatable/main
-//= require shared/datatable/checkbox
-//= require shared/datatable/delete
-//= require shared/datatable/merge
-//= require shared/datatable/state
-//= require shared/datatable/tag
-//= require shared/datatable/validate
+//= require hera/modules/datatable/main
+//= require hera/modules/datatable/checkbox
+//= require hera/modules/datatable/delete
+//= require hera/modules/datatable/merge
+//= require hera/modules/datatable/state
+//= require hera/modules/datatable/tag
+//= require hera/modules/datatable/validate
 
 //= require hera/vendor/jquery.breadcrumbs
 //= require hera/vendor/jquery.treemodal
 //= require hera/vendor/jquery.treenav
 
 //= require hera/behaviors
-//= require shared/behaviors
-
 //= require hera/engines
 
 //= require hera/modules/activities_poller

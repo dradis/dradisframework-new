@@ -233,7 +233,7 @@ end
 
 # ----------------------------------------------------------------- Calculators
 
-gem 'dradis-calculator_cvss', github: 'dradis/dradis-calculator_cvss'
+gem 'dradis-calculator_cvss', github: 'dradis/dradis-calculator_cvss', branch: 'hera/replace-mintcreek'
 gem 'dradis-calculator_dread', github: 'dradis/dradis-calculator_dread'
 # ---------------------------------------------------------------------- Export
 gem 'dradis-csv_export', '~> 4.15.0'

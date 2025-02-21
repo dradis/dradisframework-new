@@ -1,21 +1,40 @@
 <ul class="navbar-nav navbar-nav-scroll utility-nav pt-0">
-  <li class="nav-item d-none d-lg-block me-0">
-    <%= render "layouts/hera/navbar/search" %>
-  </li>
-  <li class="nav-item">
-    <%= link_to main_app.project_trash_path(current_project), class: 'nav-link', data: { behavior: 'nav-link' } do %>
-      <i class="fa-solid fa-trash-can fa-fw me-1 me-lg-0" title="Trash"></i>
-      <span class="d-inline d-lg-none">Trash</span>
+  <li class="nav-item notifications dropdown">
+    <%= 
+      link_to main_app.project_notifications_path(current_project), 
+        class: 'nav-link dropdown-toggle no-caret', 
+        data: { 
+          id: 'notifications',
+          bs_toggle: 'dropdown',
+          behavior: 'notifications-dropdown close-collapse',
+          project_id: current_project.id 
+        }, 
+        role: 'button', 
+        'aria-expanded': 'false' do %>
+      <i class="notifications-bell fa-solid fa-bell d-none d-lg-inline" title="Notifications"><i class="notifications-dot d-none" data-behavior="notifications-dot"></i></i>
+      <span class="d-inline d-lg-none">Notifications</span>
     <% end %>
+    <div class="dropdown-menu dropdown-menu-end" data-url="<%= main_app.notifications_path %>" aria-labelledby="notifications">
+    </div>
   </li>
-  <li class="nav-item dropdown">
-    <a href="javascript:void(0)" class="nav-link dropdown-toggle no-caret-xl" id="configurationDropdown" title="Configuration" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <i class="fa-solid fa-cog fa-fw me-1 me-lg-0" title="Configuration"></i>
-      <span class="d-inline d-lg-none">Configuration</span>
+  <%= render partial: 'layouts/hera/navbar/help' %>
+
+  <li class="nav-item dropdown me-0 mb-3 mb-lg-0">
+    <a class="nav-link dropdown-toggle pe-0 py-lg-0 d-flex align-items-center no-caret-xl" href="javascript:void(0)" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="user-profile">
+      <%= avatar_image(current_user, size: 32) %>
+      <span class="d-block d-lg-none ms-1"><%= current_user.name %></span>
     </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="configurationDropdown">
-      <li><%= link_to 'Configure Integrations', main_app.project_configurations_path(current_project), class: 'dropdown-item' %></li>
-      <li><%= link_to "Manage Tags", main_app.project_tags_path(current_project), class: 'dropdown-item' %></li>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="user-profile">
+      <% if defined?(Dradis::Pro) %>
+        <li><%= link_to 'Profile', main_app.profile_path, class: 'dropdown-item js-profile', data: { email: current_user.email } %></li>
+        <li><hr class="dropdown-divider"></li>
+      <% end %>
+      <li>
+        <%= link_to main_app.logout_path,  class: 'dropdown-item', data: { turbolinks: false } do %>
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          <span class="ms-1">Logout</span>
+        <% end %>
+      </li>
     </ul>
   </li>
 </ul>

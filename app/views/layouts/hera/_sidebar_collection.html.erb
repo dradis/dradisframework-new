@@ -2,7 +2,7 @@
   <div class="header-inner">
     <h5 class="header-name"><%= local_assigns[:index_path] ? link_to(name, index_path) : name.humanize %></h5>
     <div class="options">
-      <%= render 'shared/add_item_dropdown',
+      <%= render 'layouts/hera/add_item_dropdown',
         name: name,
         new_path: local_assigns[:new_path],
         category_id: local_assigns[:category_id],
