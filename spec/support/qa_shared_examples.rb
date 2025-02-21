@@ -96,9 +96,16 @@ shared_examples 'qa pages' do |item_type|
 
         expect { click_button state }.to have_enqueued_job(ActivityTrackingJob).with(job_params(record))
 
-        expect(current_path).to eq polymorphic_path([current_project, :qa, item_type.to_s.pluralize.to_sym])
-        expect(page).to have_selector('.alert-success', text: 'State updated successfully.')
+        expect(page).to have_selector('.alert-success', text: 'State successfully updated')
         expect(record.reload.state).to eq state.downcase.gsub(' ', '_')
+
+        next_item = model.where(state: 'ready_for_review').first
+
+        if next_item
+          expect(current_path).to eq polymorphic_path([current_project, :qa, next_item])
+        else
+          expect(current_path).to eq polymorphic_path([current_project, :qa, item_type.to_s.pluralize.to_sym])
+        end
       end
     end
   end

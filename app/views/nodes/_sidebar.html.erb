@@ -1,7 +1,6 @@
-<% content_for :sidebar do %>
-  <div class="inner-content">
-    <!-- Notes -->
-    <%= render 'shared/sidebar_collection',
+<div class="inner-content">
+  <!-- Notes -->
+  <%= render 'shared/sidebar_collection',
       category_id: Category.default.id,
       collection: @sorted_notes,
       index_path: project_node_path(current_project, @node, tab: 'notes-tab'),
@@ -9,8 +8,8 @@
       new_path: new_project_node_note_path(@node.project, @node)
     %>
 
-    <!-- Evidence -->
-    <%= render 'shared/sidebar_collection',
+  <!-- Evidence -->
+  <%= render 'shared/sidebar_collection',
       category_id: Category.issue.id,
       collection: @sorted_evidence,
       index_path: project_node_path(current_project, @node, tab: 'evidence-tab'),
@@ -18,7 +17,6 @@
       new_path: new_project_node_evidence_path(@node.project, @node)
     %>
 
-    <!-- Attachments -->
-    <%= render partial: 'attachments/attachment_box', locals: { attachments_node: @node } %>
-  </div>
-<% end %>
+  <!-- Attachments -->
+  <%= render partial: 'attachments/attachment_box', locals: { attachments_node: @node } %>
+</div>

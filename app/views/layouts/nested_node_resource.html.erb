@@ -1,5 +1,7 @@
 <% content_for :content do %>
-  <%= render "nodes/sidebar" %>
+  <% content_for :sidebar do %>
+    <%= render "nodes/sidebar" %>
+  <% end %>
   <%= render "nested_node_resources/poller_alerts" %>
   <%= yield %>
 <% end %>
