@@ -37,7 +37,7 @@ To try Dradis Community, you can deploy your own instance (you will need account
   * [SAINT](https://dradis.com/integrations/saint.html)
   * [Zed Attack Proxy](https://dradis.com/integrations/zap.html)
   * ...
-  * [Full list](http://dradis.org/integrations/)
+  * [Full list](https://dradis.com/integrations/)
 
 
 ## Editions
