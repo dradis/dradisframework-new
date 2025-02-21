@@ -5,16 +5,25 @@ describe 'Export Manager' do
 
   it 'presents the name of the project you are exporting' do
     visit project_export_manager_path(current_project)
-    expect(page).to have_content(@project.name)
+    expect(page).to have_content(current_project.name)
   end
 
-  it 'presents existing Issues' do
-    skip "For the time being we won't show the Issues in the Export Manager"
-    # @issuelib = @project.nodes.create(:label => 'All issues', :type_id => Node::Types::ISSUELIB)
-    # issue = create(:issue, :node => @issuelib)
-    #
-    # visit project_export_manager_path(current_project)
-    # page.should have_content(issue.title)
+  context 'Submit button' do
+    context 'when there are only draft records in the project' do
+      it 'presents the option to export all records' do
+        create(:issue, node: current_project.issue_library, state: :draft)
+        visit project_export_manager_path(current_project)
+        expect(page).to have_content('Export All Records')
+      end
+    end
+
+    context 'when there are published records in the project' do
+      it 'presents the option to export published records' do
+        create(:issue, node: current_project.issue_library, state: :published)
+        visit project_export_manager_path(current_project)
+        expect(page).to have_content('Export Published Records')
+      end
+    end
   end
 
   context 'a template is passed to the export action' do
