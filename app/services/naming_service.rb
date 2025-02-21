@@ -28,7 +28,7 @@ class NamingService
   def self.name_project(name)
     return name unless Project.exists?(name: name)
 
-    projects = Project.where("name LIKE ?", "#{name}_copy-%")
+    projects = Project.where("name REGEXP ?", "^#{name}_copy-[0-9]+$")
     project_names = projects.map(&:name)
 
     new_name(
