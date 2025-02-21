@@ -1,5 +1,5 @@
 <% field_name = local_assigns[:field] ? field[0]  : '' %>
-<% value = local_assigns[:field] ? field[1] : '' %>
+<% values = local_assigns[:field] ? field[1] : '' %>
 
 <div class="textile-form-field" data-behavior="textile-form-field">
   <div class="d-inline-flex justify-content-between w-100">
@@ -21,12 +21,12 @@
   </div>
   <div class="inline-editable">
     <div class="edit-hover">
-      <% options = value.split(' | ') %>
+      <% options = parse_field_value_options(values) %>
       <% if @allow_dropdown && options.count > 1 %>
         <%= select :item_form, "field_value_#{index}", options, {}, { class: 'form-control', data: { behavior: 'preview-enabled' }, tabindex: index + 1 } %>
       <% else %>
         <%= label_tag "item_form[field_value_#{index}]", 'Field Value', class: 'visually-hidden' %>
-        <%= text_area_tag "item_form[field_value_#{index}]", value, rows: 1,
+        <%= text_area_tag "item_form[field_value_#{index}]", values, rows: 1,
           class: 'form-control',
           data: {
             behavior: 'preview-enabled rich-toolbar drop-zone',

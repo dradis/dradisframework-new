@@ -4,8 +4,7 @@
   - Upgraded gems:
     - net-imap, rack
   - Bugs fixes:
-    - [entity]:
-      - [future tense verb] [bug fix]
+    - Editor: Fix incorrect parsing of field value options that contain Liquid
     - Bug tracker items:
       - [item]
   - New integrations:
