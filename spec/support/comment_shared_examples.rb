@@ -119,6 +119,7 @@ shared_examples 'a page with a comments feed' do |commentable_factory|
           click_link 'Edit'
           fill_in 'comment[content]', with: 'test comment edited'
           sleep 1 # Needed for debounce function in local_auto_save.js
+          page.driver.browser.action.move_to(nil, 0, 0).perform # needed so hover works after page refresh
         end
       end
 
@@ -147,6 +148,7 @@ shared_examples 'a page with a comments feed' do |commentable_factory|
             click_link 'Cancel'
           end
 
+          page.driver.browser.action.move_to(nil, 0, 0).perform # needed so hover works after page refresh
           page.driver.browser.navigate.refresh
           find("div#comment_#{model.id}").hover
 

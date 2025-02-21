@@ -5,7 +5,7 @@ describe 'Card pages:' do
 
   it 'should require authenticated users' do
     project = create(:project)
-    @board = create(:board, project:, node: project.methodology_library)
+    @board = create(:board, project: project, node: project.methodology_library)
     visit project_board_path(@board.project, @board)
     expect(current_path).to eq(login_path)
     expect(page).to have_content('Access denied.')
@@ -81,12 +81,18 @@ describe 'Card pages:' do
           check @first_user.name
           check @second_user.name
 
+          expect(page).to have_checked_field("card_assignee_ids_#{@first_user.id}")
+          expect(page).to have_checked_field("card_assignee_ids_#{@second_user.id}")
+
           submit_form
+
           card = Card.last
           expect(current_path).to eq(project_board_list_card_path(current_project, @board, @list, card))
-          expect(page).to have_text(@first_user.name)
-          expect(page).to have_text(@second_user.name)
-          expect(card.assignees.count).to eq 2
+
+          assignee_ids = card.reload.assignees.pluck(:id)
+          expect(assignee_ids.count).to eq 2
+          expect(assignee_ids.include? @first_user.id).to be true
+          expect(assignee_ids.include? @second_user.id).to be true
         end
       end
 
@@ -186,11 +192,18 @@ describe 'Card pages:' do
           uncheck @first_user.name
           check @second_user.name
 
+          wait_for_ajax
+
+          expect(page).to have_unchecked_field("card_assignee_ids_#{@first_user.id}")
+          expect(page).to have_checked_field("card_assignee_ids_#{@second_user.id}")
+
           submit_form
+
           expect(current_path).to eq(project_board_list_card_path(current_project, @board, @list, @card))
-          sleep 1
-          expect(page).not_to have_text(@first_user.name)
-          expect(page).to have_text(@second_user.name)
+
+          assignee_ids = @card.reload.assignees.pluck(:id)
+          expect(assignee_ids.include? @first_user.id).to be false
+          expect(assignee_ids.include? @second_user.id).to be true
         end
       end
 

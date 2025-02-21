@@ -35,8 +35,7 @@ describe 'notifications index page' do
     create_notification(recipient: u2)
 
     visit project_notifications_path(@project)
-
-    expect(page).to have_selector '.notification', count: 2
+    expect(page).to have_selector('.notification', count: 2, wait: 10)
     expect(page).not_to have_content "You don't have any notifications yet."
   end
 

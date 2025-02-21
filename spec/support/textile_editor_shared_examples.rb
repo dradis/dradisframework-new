@@ -78,8 +78,8 @@ shared_examples 'a textile form view' do |klass|
     content_attribute = get_content_attribute(klass)
     show_path = get_show_path(updated_item, klass)
 
-    expect(page).to have_current_path(polymorphic_path(show_path), ignore_query: true)
     expect(updated_item.reload.send(content_attribute)).to include("#[Title]#\r\nTest Item")
+    expect(page).to have_current_path(polymorphic_path(show_path), ignore_query: true)
   end
 
   it 'supports text without field headers' do
