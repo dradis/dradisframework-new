@@ -12,8 +12,8 @@
 <% end %>
 
 <div class="row p-0">
-  <div class="col-lg-6 col-xl-5 order-1">
-    <div class="content-container" data-behavior="content-container">
+  <div class="col-lg-6 col-xl-5 mb-4">
+    <div class="content-container mb-0 h-100">
       <h4 class="header-underline">Upload Output Files</h4>
       <p class="mt-4">Use the form below to upload output files from other tools.</p>
 
@@ -56,35 +56,8 @@
     </div>
   </div>
 
-  <div class="col-lg-6 col-xl-7 order-3 order-lg-2 content-overflow">
-    <div class="content-container">
-      <h4 class="header-underline">Available plugins</h4>
-
-      <div class="overflow-auto">
-        <table class="table table-striped mb-0">
-          <thead>
-            <tr>
-              <th>Plugin</th>
-              <th>Description</th>
-              <th>Version</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @uploaders.each do |uploader| %>
-              <tr>
-                <td><code><%= uploader.name %></code></td>
-                <td><%= uploader.meta[:description] %></td>
-                <td><%= uploader.meta[:version] %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-12 order-2 order-lg-3">
-    <div class="content-container">
+  <div class="col-lg-6 col-xl-7 mb-4">
+    <div class="content-container mb-0 h-100">
       <h4 class="header-underline">Output console</h4>
       <div id="status"></div>
       <%= content_tag :div, id: 'result', style: 'display:none', data: { url: status_console_index_path }  do %>

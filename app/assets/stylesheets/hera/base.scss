@@ -19,6 +19,7 @@ body:not(.unauthenticated) {
   min-height: 100vh;
   text-wrap: pretty;
   overflow-x: clip;
+  overscroll-behavior: none;
 }
 
 a {
@@ -42,8 +43,71 @@ a {
   font-size: 0.9rem;
 }
 
+.alert-danger {
+  background-color: $red-100 !important;
+  border: 1px solid $red-200;
+  color: $red-600;
+}
+
+.alert-success {
+  background-color: $green-100 !important;
+  border: 1px solid $green-200;
+  color: $green-800;
+}
+
+.alert-warning {
+  background-color: $yellow-100 !important;
+  border: 1px solid $yellow-300;
+  color: $yellow-800;
+}
+
+b,
+.form-label,
+strong,
+th {
+  font-family: 'ProximaNovaRegular', 'system-ui';
+}
+
+.badge {
+  font-size: 0.8rem;
+}
+
+.badge-outline-danger {
+  border: 1px solid $red;
+  color: $red;
+}
+
+.badge-outline-info {
+  border: 1px solid darken($green-700, 10%);
+  color: darken($green-700, 10%);
+}
+
+.badge-outline-lavender {
+  border: 1px solid $lavender-dark;
+  color: $lavender-dark;
+}
+
+.bg-info {
+  background-color: $green-100 !important;
+  color: $green-900;
+}
+
+.bg-lavender {
+  background-color: $lavender-light;
+  color: darken($lavender-dark, 40%);
+}
+
 .bg-primary {
   background-color: $primary !important;
+  color: $white;
+}
+
+.bg-success {
+  color: $green-800;
+}
+
+.bg-warning {
+  color: $yellow-800;
 }
 
 blockquote {
@@ -65,9 +129,55 @@ code {
   padding: 0.15rem 0.5rem;
 }
 
+.empty-state {
+  &-actions {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+  }
+
+  &-body-text {
+    text-align: center;
+  }
+
+  &-docs-link {
+    font-size: 0.8rem;
+  }
+
+  &-icon {
+    border-radius: 50%;
+    margin: 0 auto;
+    width: max-content;
+
+    img {
+      height: auto;
+      width: 11.5rem;
+    }
+  }
+
+  &-title {
+    margin: 3rem 0;
+    text-align: center;
+  }
+}
+
+fieldset.check_boxes {
+  .form-check {
+    margin-bottom: 0.5rem;
+  }
+}
+
 .form-actions {
   padding-top: 1rem;
   border-top: 1px solid $border-color;
+}
+
+.form-check-input {
+  &:checked {
+    background-color: $primary;
+    border-color: $primary;
+  }
 }
 
 .form-control {
@@ -99,13 +209,32 @@ mark {
 }
 
 .nav-pills {
+  .nav-item {
+    margin-right: 0.5rem;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
   .nav-link {
+    background-color: $secondary-bg;
+    border: 1px solid $border-color;
     transition: all 0s ease-in-out;
 
     &.active {
-      background-color: $secondary-bg;
+      background-color: $instance-nav-bg;
+      border: 1px solid $border-color;
       color: $text-link-hover;
     }
+  }
+}
+
+.nav-tabs + .tab-content {
+  .card {
+    border-top: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
   }
 }
 
@@ -126,10 +255,6 @@ pre code {
 
 .required-input {
   color: $red;
-}
-
-strong {
-  font-family: 'ProximaNovaRegular', 'system-ui';
 }
 
 .text-break-spaces {

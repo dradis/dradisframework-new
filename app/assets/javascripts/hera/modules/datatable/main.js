@@ -44,7 +44,7 @@ class DradisDatatable {
         dom: {
           button: {
             tag: 'button',
-            className: 'btn btn-secondary',
+            className: 'btn',
           },
         },
         buttons: [

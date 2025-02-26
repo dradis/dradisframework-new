@@ -1,12 +1,21 @@
 @import 'hera/modules/attachments';
 @import 'hera/modules/buttons';
+@import 'hera/modules/colors';
+@import 'hera/modules/comments';
 @import 'hera/modules/datatables';
 @import 'hera/modules/dropdown';
 @import 'hera/modules/dots_menu';
+@import 'hera/modules/editor_toolbar';
+@import 'hera/modules/icons';
+@import 'hera/modules/inline_editable';
 @import 'hera/modules/modals';
 @import 'hera/modules/navigation/navigation';
 @import 'hera/modules/navigation/search';
+@import 'hera/modules/notifications';
+@import 'hera/modules/revisions';
 @import 'hera/modules/sidebar';
+@import 'hera/modules/textile';
+@import 'hera/modules/validations';
 
 [aria-tooltip] {
   position: relative;
@@ -96,6 +105,10 @@
       text-overflow: ellipsis;
     }
   }
+}
+
+.card-title {
+  font-size: 1rem;
 }
 
 .column-actions a {
@@ -223,6 +236,51 @@
   white-space: nowrap;
 }
 
+.list-group {
+  .list-group-item {
+    &:hover {
+      background-color: $light;
+    }
+  }
+}
+
+//vertical nav-tabs
+.nav {
+  &.flex-column {
+    .nav-item {
+      &:first-child {
+        .nav-link {
+          border-top-left-radius: $border-radius;
+          border-top-right-radius: $border-radius;
+        }
+      }
+
+      &:last-child {
+        .nav-link {
+          border-bottom-left-radius: $border-radius;
+          border-bottom-right-radius: $border-radius;
+          border-bottom: 1px solid $border-color;
+        }
+      }
+
+      .nav-link {
+        border: 1px solid $border-color;
+        border-bottom: none;
+
+        &.active {
+          background-color: $instance-nav-bg;
+          border: none;
+        }
+
+        &:focus,
+        &:hover {
+          background-color: $light;
+        }
+      }
+    }
+  }
+}
+
 .nav-link {
   color: $text-link;
   display: block;
@@ -241,8 +299,28 @@
   }
 }
 
+.page {
+  &.page-mini {
+    padding: 10px;
+  }
+  &.page-none {
+    margin: 0 0;
+    padding: 0px;
+  }
+}
+
 .page-title {
   margin: 1.5rem 0;
+}
+
+.pagination {
+  padding-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  border-top: 1px solid $border-color;
+
+  > * {
+    padding-right: 5px;
+  }
 }
 
 pre {

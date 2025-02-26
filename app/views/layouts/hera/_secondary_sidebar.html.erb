@@ -1,11 +1,13 @@
-<div class="secondary-sidebar sidebar" data-behavior="sidebar" data-storage-key="secondary-sidebar-expanded">
-  <div class="sidebar-toggle">
-    <a href="javascript:void(0)" class="sidebar-toggle-link" data-behavior="sidebar-toggle">
-      <i class="fa-solid fa-chevron-left sidebar-toggle-icon"></i>
-      <span class="visually-hidden">Toggle sidebar</span>
-    </a>
+<aside>
+  <div class="secondary-sidebar sidebar" data-behavior="sidebar" data-storage-key="secondary-sidebar-expanded">
+    <div class="sidebar-toggle">
+      <a href="javascript:void(0)" class="sidebar-toggle-link" data-behavior="sidebar-toggle">
+        <i class="fa-solid fa-chevron-left sidebar-toggle-icon"></i>
+        <span class="visually-hidden">Toggle sidebar</span>
+      </a>
+    </div>
+    <div class="sidebar-content" data-behavior="sidebar-content">
+      <%= yield :sidebar %>
+    </div>
   </div>
-  <div class="sidebar-content" data-behavior="sidebar-content">
-    <%= yield :sidebar %>
-  </div>
-</div>
+</aside>

@@ -8,28 +8,11 @@
 
 @import 'vendor/datatables.min';
 
-// Shared stylesheets
-@import 'shared/activities';
-@import 'shared/buttons';
-@import 'shared/comments';
-@import 'shared/datatables';
-@import 'shared/editor_toolbar';
-@import 'shared/empty_state.scss';
-@import 'shared/icons';
-@import 'shared/inline_editable';
-@import 'shared/navigation';
-@import 'shared/mixins';
-@import 'shared/noscript';
-@import 'shared/notifications';
-@import 'shared/pagination';
-@import 'shared/revisions';
-@import 'shared/textile.scss';
-@import 'shared/validations';
-
 // Hera stylesheets
 @import 'hera/base'; // Base HTML elements like body, h1, etc.
 @import 'hera/engines'; // Styles injected by our engines (gems)
 @import 'hera/layout'; // Layout-level styling (header, main, columns, etc)
+@import 'hera/mixins';
 @import 'hera/modules'; // Styling for reuseable components
 @import 'hera/utilities'; // Utility classes
 @import 'hera/views'; // View-specific styling

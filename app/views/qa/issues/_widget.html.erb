@@ -2,7 +2,7 @@
   <div class="header-inner">
     <h5 class="header-name font-light">Update State</h5>
     <div class="options">
-      <%= link_to "#update-state", data: { bs_toggle: 'collapse', behavior: 'collapse-collection' }, class: local_assigns.fetch(:collapse_class, '') do %>    
+      <%= link_to "#update-state", data: { bs_toggle: 'collapse', behavior: 'collapse-collection' }, class: local_assigns.fetch(:collapse_class, '') do %>
         <i class="fa-solid fa-chevron-up" data-behavior="toggle-chevron"></i><span class="visually-hidden">Toggle update state</span>
       <% end %>
     </div>
@@ -10,9 +10,9 @@
 </div>
 
 <div id="update-state" class="note-list qa-list collapse show">
-  <div class="btn-group mb-4">
-    <%= button_to 'Draft', project_qa_issue_path(current_project, id: @issue, state: 'draft'), method: :put, class: 'btn btn-secondary text-dark rounded-start' %>
-    <div class="btn-placeholder rounded-0">Review</div>
-    <%= button_to 'Published', project_qa_issue_path(current_project, id: @issue, state: 'published'), method: :put, class: 'btn btn-secondary text-dark rounded-end' %>
+  <div class="btn-group d-flex">
+    <%= button_to 'Draft', project_qa_issue_path(current_project, id: @issue, state: 'draft'), method: :put, class: 'btn btn-secondary btn-responsive rounded-start', form_class: 'flex-grow-1' %>
+    <div class="btn-placeholder btn-responsive rounded-0 fs-6">Review</div>
+    <%= button_to 'Published', project_qa_issue_path(current_project, id: @issue, state: 'published'), method: :put, class: 'btn btn-secondary btn-responsive rounded-end', form_class: 'flex-grow-1' %>
   </div>
 </div>

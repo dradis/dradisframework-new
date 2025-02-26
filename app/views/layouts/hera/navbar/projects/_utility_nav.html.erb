@@ -1,0 +1,21 @@
+<ul class="navbar-nav navbar-nav-scroll utility-nav pt-0">
+  <li class="nav-item d-none d-lg-block me-0">
+    <%= render "layouts/hera/navbar/projects/search" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to main_app.project_trash_path(current_project), class: 'nav-link', data: { behavior: 'nav-link' } do %>
+      <i class="fa-solid fa-trash-can fa-fw me-1 me-lg-0" title="Trash"></i>
+      <span class="d-inline d-lg-none">Trash</span>
+    <% end %>
+  </li>
+  <li class="nav-item dropdown">
+    <a href="javascript:void(0)" class="nav-link dropdown-toggle no-caret-xl" id="configurationDropdown" title="Configuration" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="fa-solid fa-cog fa-fw me-1 me-lg-0" title="Configuration"></i>
+      <span class="d-inline d-lg-none">Configuration</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="configurationDropdown">
+      <li><%= link_to 'Configure Integrations', main_app.project_configurations_path(current_project), class: 'dropdown-item' %></li>
+      <li><%= link_to "Manage Tags", main_app.project_tags_path(current_project), class: 'dropdown-item' %></li>
+    </ul>
+  </li>
+</ul>

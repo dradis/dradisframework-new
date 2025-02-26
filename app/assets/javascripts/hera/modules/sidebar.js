@@ -22,7 +22,6 @@
         if ($(window).width() < that.mobileBreakpoint) {
           that.close();
         }
-        that.setViewContentMaxWidth();
       });
     }
 
@@ -37,7 +36,6 @@
         .addClass('sidebar-collapsed')
         .attr('data-behavior', 'sidebar');
 
-      this.setViewContentMaxWidth();
       this.changeState(this.storageKey, false);
     }
 
@@ -55,25 +53,7 @@
         .addClass('sidebar-expanded')
         .attr('data-behavior', 'sidebar sidebar-expanded');
 
-      this.setViewContentMaxWidth();
       this.changeState(this.storageKey, true);
-    }
-
-    setViewContentMaxWidth() {
-      const collapsedSidebarsWidth = 10;
-      const viewportWidth = $(window).width() - collapsedSidebarsWidth;
-      let sidebarsWidth = 0;
-
-      $('[data-behavior~=sidebar]').each(function () {
-        sidebarsWidth += $(this).width();
-      });
-
-      const limit =
-        $(window).width() < this.mobileBreakpoint
-          ? viewportWidth
-          : viewportWidth - sidebarsWidth;
-
-      $('[data-behavior~=view-content]').css('max-width', limit);
     }
 
     toggle(openSidebar) {

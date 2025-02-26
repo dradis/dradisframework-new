@@ -1,7 +1,7 @@
 <% content_for :sidebar do %>
   <div class="inner-content">
     <!-- Notes -->
-    <%= render 'shared/sidebar_collection',
+    <%= render 'layouts/hera/sidebar_collection',
       category_id: Category.default.id,
       collection: @sorted_notes,
       index_path: project_node_path(current_project, @node, tab: 'notes-tab'),
@@ -10,7 +10,7 @@
     %>
 
     <!-- Evidence -->
-    <%= render 'shared/sidebar_collection',
+    <%= render 'layouts/hera/sidebar_collection',
       category_id: Category.issue.id,
       collection: @sorted_evidence,
       index_path: project_node_path(current_project, @node, tab: 'evidence-tab'),

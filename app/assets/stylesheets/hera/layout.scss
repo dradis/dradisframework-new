@@ -1,14 +1,24 @@
 body:not(.unauthenticated) {
+  font-size: 0.95rem;
+
   @media (max-width: 991px) {
     grid-template-rows: #{$navbar-height} 1fr;
   }
-  @media (min-width: 992px) {
-    grid-template-rows: calc(#{$navbar-height} * 2) 1fr;
+
+  &.in-project {
+    @media (min-width: 992px) {
+      grid-template-rows: calc(#{$navbar-height} * 2) 1fr;
+    }
   }
-  grid-template-columns: $sidebar-width 1fr;
+  &:not(.in-project) {
+    @media (min-width: 992px) {
+      grid-template-rows: #{$navbar-height} 1fr;
+    }
+  }
+
   grid-template-areas:
-    'navigation navigation navigation'
-    'nodes-sidebar view-content secondary-sidebar';
+    'navigation'
+    'view-content';
 }
 
 .container,
@@ -32,16 +42,58 @@ body:not(.unauthenticated) {
   p:last-child {
     margin-bottom: 0;
   }
-
-  &.restrict-height {
-    height: calc(100vh - 10rem);
-    overflow: auto;
-  }
 }
 
 .content-grid {
   display: grid;
+  grid-template-columns: auto 1fr auto;
   grid-template-rows: 1fr auto;
+  width: 100vw;
+
+  @include media-breakpoint-up(lg) {
+    // both sidebars rendered and are expanded
+    &:has(.sidebar-expanded.main-sidebar):has(
+        .sidebar-expanded.secondary-sidebar
+      )
+      .view-content {
+      width: calc(
+        100vw -
+          (
+            #{$sidebar-width} + (#{$sidebar-width} * #{$sidebar-width-multiplier})
+          )
+      );
+    }
+
+    // main sidebar is expanded, secondary sidebar is not rendered
+    &:has(.main-sidebar.sidebar-expanded):not(:has(.secondary-sidebar))
+      .view-content {
+      width: calc(100vw - #{$sidebar-width});
+    }
+
+    // main sidebar is expanded, secondary sidebar is collapsed
+    &:has(.main-sidebar.sidebar-expanded):has(.secondary-sidebar):not(
+        :has(.secondary-sidebar.sidebar-expanded)
+      )
+      .view-content {
+      width: calc(100vw - #{$sidebar-width} - #{$sidebar-width-collapsed});
+    }
+
+    // secondary sidebar is expanded, main sidebar is not rendered
+    &:has(.secondary-sidebar.sidebar-expanded):not(:has(.main-sidebar))
+      .view-content {
+      width: calc(100vw - (#{$sidebar-width} * #{$sidebar-width-multiplier}));
+    }
+
+    // secondary sidebar is expanded, main sidebar is collapsed
+    &:has(.secondary-sidebar.sidebar-expanded):has(.main-sidebar):not(
+        :has(.main-sidebar.sidebar-expanded)
+      )
+      .view-content {
+      width: calc(
+        100vw - (#{$sidebar-width} * #{$sidebar-width-multiplier}) - #{$sidebar-width-collapsed}
+      );
+    }
+  }
 }
 
 footer {
@@ -57,10 +109,44 @@ header {
   grid-area: navigation;
 }
 
-.row {
-  padding: 0 0.75rem;
+hr {
+  border-bottom: solid 2px rgba(0, 0, 0, 0.25);
+  border-top: 0;
+  margin: 1rem 0;
 
+  &.small {
+    border-bottom: solid 5px rgba(0, 0, 0, 0.25);
+    margin-left: 0;
+    width: 75px;
+  }
+}
+
+main {
+  max-width: 100vw;
+  width: 100%;
+}
+
+.row {
   & > *[class*='col-'] {
     position: relative;
+  }
+}
+
+select.form-select[multiple] {
+  padding: 0;
+}
+
+.view-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &:has(.main-sidebar),
+  &:has(.secondary-sidebar) {
+    width: calc(100vw - #{$sidebar-width-collapsed});
+  }
+
+  &:has(.main-sidebar):has(.secondary-sidebar) {
+    width: calc(100vw - (#{$sidebar-width-collapsed} * 2));
   }
 }

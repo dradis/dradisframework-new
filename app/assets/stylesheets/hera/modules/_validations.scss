@@ -4,6 +4,11 @@
       list-style-type: none;
       padding: 0;
 
+      .fw-bold {
+        font-family: 'ProximaNovaRegular', 'system-ui';
+        padding: 0.5rem 0;
+      }
+
       li {
         i {
           margin-right: 0.15rem;
