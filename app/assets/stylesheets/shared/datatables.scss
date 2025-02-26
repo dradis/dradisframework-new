@@ -264,6 +264,12 @@ div.dataTables_wrapper {
         }
       }
 
+      &.disabled {
+        color: $text-muted;
+        cursor: not-allowed;
+        pointer-events: auto;
+      }
+
       &:focus,
       &:hover {
         outline: none;

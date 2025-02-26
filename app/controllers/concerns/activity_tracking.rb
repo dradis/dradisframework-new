@@ -29,6 +29,10 @@ module ActivityTracking
 
   def track_updated(trackable, user: current_user, project: current_project)
     track_activity(trackable, :update, user, project)
+
+    if trackable.respond_to?(:state) && trackable.state_previously_changed?
+      track_state_change(trackable)
+    end
   end
 
   def track_state_change(trackable, user: current_user, project: current_project)

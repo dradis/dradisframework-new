@@ -1,15 +1,16 @@
-<% cache ['issues-table', @all_columns, issues.map(&:id), @issues.map(&:updated_at).map(&:to_i).sort.last, @tags] do %>
-  <% table_attributes = {
-    behavior: 'dradis-datatable',
-    'default-columns': @default_columns.to_json,
-    'item-name': 'issue',
-    'local-storage-key': local_storage_key,
-    'new-tag-path': new_project_tag_path(current_project),
-    'state-icons': local_assigns[:qa_state_icons] ? local_assigns[:qa_state_icons] : state_icons,
-    'tags-path': project_tags_path(current_project)
-  }%>
-  <% table_attributes.merge!(tags: @tags.map { |t| [t.display_name, t.color, t.name] }.to_json) if local_assigns[:tags] %>
-  <%= tag.table class: 'table table-striped mb-0', data: table_attributes do %>
+<% table_attributes = {
+  behavior: 'dradis-datatable',
+  'default-columns': @default_columns.to_json,
+  'item-name': 'issue',
+  'local-storage-key': local_storage_key,
+  'new-tag-path': new_project_tag_path(current_project),
+  'can-publish': can?(:publish, current_project),
+  'state-icons': local_assigns[:qa_state_icons] ? local_assigns[:qa_state_icons] : state_icons,
+  'tags-path': project_tags_path(current_project)
+}%>
+<% table_attributes.merge!(tags: @tags.map { |t| [t.display_name, t.color, t.name] }.to_json) if local_assigns[:tags] %>
+<%= tag.table class: 'table table-striped mb-0', data: table_attributes do %>
+  <% cache ['issues-table', @all_columns, issues.map(&:id), @issues.map(&:updated_at).map(&:to_i).sort.last, @tags] do %>
     <thead>
       <tr>
         <th class="no-sort" data-column-visible="false"><span class="visually-hidden">Select</span></th>

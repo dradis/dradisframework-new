@@ -6,7 +6,7 @@ describe 'Revisions#show:' do
   describe 'when the record has 2 revisions' do
     let(:record) do
       with_versioning do
-        create(:issue, node: current_project.issue_library)
+        create(:issue, node: current_project.issue_library, state: :draft)
       end
     end
 
@@ -15,6 +15,7 @@ describe 'Revisions#show:' do
 
       with_versioning do
         record.text = 'updated text'
+        record.state = :published
         record.save
       end
     end
@@ -29,6 +30,14 @@ describe 'Revisions#show:' do
           should have_selector("time[datetime='#{version.created_at.strftime('%FT%TZ')}']")
         end
       end
+    end
+
+    it 'shows the state change' do
+      visit project_issue_revisions_path(current_project, record)
+
+      expect(page).to have_content('State:')
+      expect(page).to have_css('del', text: 'Draft')
+      expect(page).to have_css('ins', text: 'Published')
     end
   end
 end

@@ -1,6 +1,9 @@
 [v#.#.#] ([month] [YYYY])
   - Hera: Add new layout with redesigned navigation
-  - QA: Add View History link when viewing Issues/Content blocks
+  - Revisions: Show state changes in the revisions view
+  - QA:
+    - Add View History link when viewing Issues/Content blocks
+    - Automatically go to the next record after reviewing
   - Upgraded gems:
     - net-imap, nokogiri, rack
   - Bugs fixes:

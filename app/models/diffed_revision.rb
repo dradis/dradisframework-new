@@ -36,6 +36,21 @@ class DiffedRevision
     after['updated_at'].strftime(RevisionsHelper::DATE_FORMAT)
   end
 
+  def changed_state
+    return {} unless @record.respond_to?(:state)
+
+    # Cast the ['state'] attribute as it can be both the state index (0,1,2) or
+    # the state name.
+    before_state = @record.class.new(state: before['state']).state
+    after_state = @record.class.new(state: after['state']).state
+
+    if before_state != after_state
+      { after: after_state, before: before_state }
+    else
+      {}
+    end
+  end
+
   private
 
   def before

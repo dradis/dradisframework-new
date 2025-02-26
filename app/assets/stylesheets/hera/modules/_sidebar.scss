@@ -27,7 +27,7 @@ body:not(.unauthenticated):has(.main-sidebar.sidebar-collapsed) {
     }
 
     .header {
-      padding-bottom: var(--padding);
+      padding-bottom: calc(var(--padding) / 2);
 
       &:not(:first-of-type) {
         margin-top: var(--margin);

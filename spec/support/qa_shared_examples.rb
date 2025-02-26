@@ -1,4 +1,6 @@
 shared_examples 'qa pages' do |item_type|
+  before { allow_any_instance_of(Project).to receive(:reviewers).and_return(User.all) }
+
   let(:model) { item_type.to_s.classify.constantize }
   let(:states) { ['Draft', 'Published'] }
 
@@ -96,9 +98,16 @@ shared_examples 'qa pages' do |item_type|
 
         expect { click_button state }.to have_enqueued_job(ActivityTrackingJob).with(job_params(record))
 
-        expect(current_path).to eq polymorphic_path([current_project, :qa, item_type.to_s.pluralize.to_sym])
-        expect(page).to have_selector('.alert-success', text: 'State updated successfully.')
+        expect(page).to have_selector('.alert-success', text: 'State successfully updated')
         expect(record.reload.state).to eq state.downcase.gsub(' ', '_')
+
+        next_item = model.where(state: 'ready_for_review').first
+
+        if next_item
+          expect(current_path).to eq polymorphic_path([current_project, :qa, next_item])
+        else
+          expect(current_path).to eq polymorphic_path([current_project, :qa, item_type.to_s.pluralize.to_sym])
+        end
       end
     end
   end
@@ -144,6 +153,36 @@ shared_examples 'qa pages' do |item_type|
     it 'renders liquid content in the editor preview', js: true do
       visit polymorphic_path([:edit, current_project, :qa, record])
       expect(find('.note-text-inner')).to have_content("Liquid: #{record.title}")
+    end
+  end
+
+  describe 'reviewer role', js: true do
+    context 'user is not a reviewer' do
+      before do
+        other_user = create(:user)
+        allow_any_instance_of(Project).to receive(:reviewers).and_return(User.where(id: other_user.id))
+        visit polymorphic_path([current_project, :qa, item_type.to_s.pluralize.to_sym])
+      end
+
+      it 'disables the "published" state option' do
+        page.find('td.select-checkbox', match: :first).click
+        click_button 'State'
+
+        expect(page).to have_css('.dt-button.dropdown-item.disabled', text: 'Published')
+      end
+    end
+
+    context 'user is a reviewer' do
+      before do
+        visit polymorphic_path([current_project, :qa, item_type.to_s.pluralize.to_sym])
+      end
+
+      it 'allows the "published" state option' do
+        page.find('td.select-checkbox', match: :first).click
+        click_button 'State'
+
+        expect(page).to have_css('.dt-button.dropdown-item', text: 'Published')
+      end
     end
   end
 
