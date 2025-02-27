@@ -57,14 +57,14 @@
       <% if defined?(Dradis::Pro) %>
         <tr align="center">
           <td>
-            <%= link_to 'Manage your Dradis email preferences', edit_user_preferences_notifications_url, style: "color: #{css_color};" %>
+            <%= link_to 'Manage your Dradis email preferences', @user_preferences_path, style: "color: #{css_color};" %>
           </td>
         </tr>
       <% end %>
 
       <tr align="center">
         <td>
-          <a href="https://dradis.com/privacy.html" style="color: #{css_color};">Privacy</a> | <%= link_to 'Login to Dradis', login_url, style: "color: #{css_color};" %>
+          <a href="https://dradis.com/privacy.html" style="color: #{css_color};">Privacy</a> | <%= link_to 'Login to Dradis', @login_path_for_user, style: "color: #{css_color};" %>
         </td>
       </tr>
       <tr>
